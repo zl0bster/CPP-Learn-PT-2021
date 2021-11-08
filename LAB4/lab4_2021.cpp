@@ -37,6 +37,17 @@ void fill_rndint_arr(int* arrInt, const size_t arrSize, const int limit)
 		arrInt[i] = rand() % limit;
 	}
 }
+void fill_uniqint_arr(int* arrInt, const size_t arrSize, const int limit)
+{
+	int value;
+	for (int i = (arrSize - 1); i >= 0; i--)
+	{
+		do
+			value = rand() % limit;
+		while (isPresent(&arrInt[0], arrSize, value));
+		arrInt[i] = value;
+	}
+}
 
 void roll_int_arr(int* arrInt, const size_t arrSize, const bool directionRt)
 {
@@ -262,13 +273,9 @@ int main()
 		int value;
 		const int arrSize = 40;
 		int arrInt[arrSize];
-		for (int i = (arrSize - 1); i >= 0; i--)
-		{
-			do
-				value = rand() % 100;
-			while (isPresent(&arrInt[0], arrSize, value)); //TODO use DO...WHILE design
-			arrInt[i] = value;
-		}
+		fill_uniqint_arr(arrInt, arrSize, 100);
+		print_int_array(&arrInt[0], arrSize);
+		sort1(arrInt, arrSize, ascend);
 		print_int_array(&arrInt[0], arrSize);
 	}
 
@@ -346,16 +353,35 @@ int main()
 
 	}
 // *******************************************************
-	//Задание 10 (*)
+	{
+		//Задание 10 (*)
 	//алгоритм "тасования колоды"
 	//объявите одномерный встроенный массив  из N элементов и 
 	// заполните  его неповторяющимися числами из заданного отрезка 
 	//натурального ряда, расположенными в случайном порядке
+
+			const int arrSize = 40;
+			int arrInt[arrSize];
+			int arrResult[arrSize];
+			char arrStat[arrSize];
+			//fill_uniqint_arr(arrInt, arrSize, 100);
+			for (int i = (arrSize - 1); i >= 0; i--)
+				arrInt[i] = i;
+			print_int_array(&arrInt[0], arrSize);
 //(Подсказки в файле Алгоритмы для лабораторной работы_4.pdf)
 //Алгоритм:
 //Массив  A [N] инициализируется последовательными значениями из отрезка, например [0,N-1]
 //index=N-1, где index- максимальное значение индекса.
-
+			int val;
+			for (int i = (arrSize - 1); i >= 0; i--)
+			{
+				do
+					val = rand() % arrSize;
+				while (arrStat[val] > 0);
+				arrStat[val]=1;
+				arrResult[i] = arrInt[val];
+			}
+			print_int_array(&arrResult[0], arrSize);
 //В цикле по index выполняется перемешивание значений:
 //	1. Генерируется случайное число  R из отрезка [0, index]
 //	2. Выполняется обмен значений A[index]  и  A[R]
@@ -363,7 +389,7 @@ int main()
 //	4. Если index==0, то конец
 //	5. Переход к шагу 1    
 
-	
+	}
 // *******************************************************
 
 }
