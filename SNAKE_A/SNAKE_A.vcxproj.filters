@@ -18,12 +18,18 @@
     <ClInclude Include="inputs.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="screen.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inputs.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="test_inputs.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="screen.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
