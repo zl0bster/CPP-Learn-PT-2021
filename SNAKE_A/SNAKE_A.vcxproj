@@ -146,6 +146,7 @@
     <ClCompile Include="inputs.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="test_inputs.cpp" />
+    <ClCompile Include="test_screen.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

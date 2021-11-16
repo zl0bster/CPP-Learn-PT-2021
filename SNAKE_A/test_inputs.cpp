@@ -56,7 +56,7 @@ static ActMapItem actMap[]
 	{UNDEF, do_ud}
 };
 
-int main()
+int _main()
 {
 	int actMapSize = sizeof(actMap) / sizeof(actMap[0]);
 	char ch;
