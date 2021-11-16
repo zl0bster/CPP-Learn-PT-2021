@@ -5,8 +5,7 @@
 	Передача параметров. Возвращение значения.
 	
 *************************************************************/
-#include <iostream>
-#include <tchar.h>
+
 //#include <cstdio>
 //#include <cstdarg>
 #include "other.h"
@@ -14,63 +13,6 @@
 
 #define	  stop __asm nop
 
-void print_int_array(const int* arrInt, size_t arrSize)
-{
-
-	for (int i = 0; (i < arrSize); i++)
-	{
-		std::cout << arrInt[i] << ' ';
-	}
-	std::cout << '\n' << "======================" << '\n';
-}
-
-void fill_rndint_arr(int* arrInt, const size_t arrSize, const int limit)
-{
-	for (int i = (arrSize - 1); i >= 0; i--)
-	{
-		arrInt[i] = rand() % limit;
-	}
-}
-
-size_t find_min_arr(int* arrInt, const size_t arrSize)
-{
-	size_t minPos = 0;
-	for (int i = (arrSize - 1); i >= 0; i--)
-	{
-		if (arrInt[i]<arrInt[minPos])
-			minPos=i;
-	}
-	return minPos;
-}
-
-int MyStrCmp(const char* line1, const char* line2)
-{
-	size_t i = 0;
-	int compareResult = 0; //equal by default
-	while ((line1[i]) && (line2[i]))
-	{
-#if defined _DEBUG
-		std::cout << line1[i] << '\t' << line2[i] << '\n';
-#endif
-		if ((line1[i]) != (line2[i]))
-			break;
-		++i;
-	}
-	if ((line1[i]) > (line2[i]))
-		compareResult = 1;
-	else if ((line1[i]) < (line2[i]))
-		compareResult = -1;
-
-	return compareResult;
-}
-
-char* get_month_name(int month)
-{
-	static const char monthSeq[] = { "nop\0JAN\0FEB\0MAR\0APR\0MAY\0JUN\0JUL\0AUG\0SEP\0OCT\0NOV\0DEC\0" };
-	if ((month<1) || (month>12))
-		return const_cast<char*>(monthSeq);
-	return const_cast<char*>(&monthSeq[month * 4]);
-};
 
 int _tmain()
 {	
@@ -196,7 +138,7 @@ int _tmain()
 			fill_rndint_arr(&intArr[0], arrSize, 100);
 			print_int_array(&intArr[0], arrSize);
 			//3.2
-			size_t minPos = find_min_arr(&intArr[0], arrSize);
+			size_t minPos = find_min_arr_ind(&intArr[0], arrSize);
 			int minVal = intArr[minPos];
 			std::cout<<"Min = "<< minVal << " in pos "<< minPos << '\n';
 		}
@@ -260,11 +202,20 @@ int _tmain()
 	}
 ////////////////////////////////////////////////////////////////////////////
 	//Задание 5. Возвращение адреса.
-	//Напишите функцию, которая находит адрес минимального элемента в массиве,
-	// таким образом, чтобы ее вызов можно было использовать слева от знака 
-	// равенства: *MyMin(параметры) = 0;
-	
-
+	{
+		//Напишите функцию, которая находит адрес минимального элемента в массиве,
+		// таким образом, чтобы ее вызов можно было использовать слева от знака 
+		// равенства: *MyMin(параметры) = 0;
+		const size_t arrSize = 40;
+		int intArr[arrSize];
+		
+		std::cout << '\n' << "======================" << '\n';
+		fill_rndint_arr(&intArr[0], arrSize, 100);
+		print_int_array(&intArr[0], arrSize);
+		int* minPtr = find_min_arr_ptr(&intArr[0], arrSize);
+		//std::cout << "Min = " << *minPtr << " in pos " << static_cast<int>(minPtr) << '\n';
+		std::cout << "Min = " << *minPtr << " in adr " << minPtr << '\n';
+	}
 ////////////////////////////////////////////////////////////////////////////
 	//Задание 6 (*).
 	//Дан одномерный массив из N элементов
