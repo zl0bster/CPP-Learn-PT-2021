@@ -3,11 +3,9 @@
 #include <string.h>
 #include <iostream>
 #include "screen.h"
+#include "const.h"
 
-static const char xResolution = 40;
-static const char yResolution = 6;
-static const char emptyFill = '.';
-static const char borderFill = '#';
+
 static char screenArray[yResolution + 2][xResolution + 3];
 
 int init_screen()
@@ -65,12 +63,13 @@ int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 	for (int i = 0; i < seqSize; i++)
 	{
 		x = charSeq->xPos + 1;
-		y = charSeq->yPos + 1;
+		y = charSeq->yPos + 1;		
 		posOK = ((x > 0) && (y > 0) && (x < xResolution) && (y < yResolution));
 		if (posOK)
 			screenArray[y][x] = charSeq->symbol;
 		else
 			return -1;
+		charSeq++;
 	}
 	return 0;
 }

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="const.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="test_inputs.h" />

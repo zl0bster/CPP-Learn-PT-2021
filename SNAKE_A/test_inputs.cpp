@@ -6,6 +6,7 @@
 
 #include "inputs.h"
 #include "test_screen.h"
+#include "const.h"
 
 void do_up()
 {
@@ -41,7 +42,8 @@ void do_ud()
 
 void do_op1()
 {
-	screen_test();
+	//test_screen();
+	move_snake_test();
 }
 using actFx = void (*)();
 

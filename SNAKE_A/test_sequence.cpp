@@ -4,6 +4,5 @@
 int main()
 {
 	test_inputs();
-	screen_test();
 	return 0;
 }
