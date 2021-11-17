@@ -5,6 +5,7 @@
 //#include <cstdlib>
 
 #include "inputs.h"
+#include "test_screen.h"
 
 void do_up()
 {
@@ -38,6 +39,10 @@ void do_ud()
 	std::cout << "KEY UNDEFINED";
 }
 
+void do_op1()
+{
+	screen_test();
+}
 using actFx = void (*)();
 
 struct ActMapItem
@@ -53,10 +58,11 @@ static ActMapItem actMap[]
 	{MOVE_LT, do_lt},
 	{MOVE_RT, do_rt},
 	{EXIT, do_xt},
-	{UNDEF, do_ud}
+	{UNDEF, do_ud},
+	{OP1, do_op1}
 };
 
-int _main()
+int test_inputs()
 {
 	int actMapSize = sizeof(actMap) / sizeof(actMap[0]);
 	char ch;

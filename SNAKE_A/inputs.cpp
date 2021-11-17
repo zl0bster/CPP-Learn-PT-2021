@@ -18,7 +18,8 @@ static KeyMapItem keyMap[]
 	{'D', MOVE_RT},
 	{'W', MOVE_UP},
 	{'S', MOVE_DN},
-	{'0', EXIT}
+	{'0', EXIT},
+	{'1', OP1}
 };
 
 int read_input()

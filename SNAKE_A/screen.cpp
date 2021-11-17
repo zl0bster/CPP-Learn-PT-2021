@@ -60,6 +60,18 @@ void clear_screen()
 int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 {
 	//#TODO check position in limits and correct position x+1, y+1 reminding border
+	int x, y;
+	bool posOK;
+	for (int i = 0; i < seqSize; i++)
+	{
+		x = charSeq->xPos + 1;
+		y = charSeq->yPos + 1;
+		posOK = ((x > 0) && (y > 0) && (x < xResolution) && (y < yResolution));
+		if (posOK)
+			screenArray[y][x] = charSeq->symbol;
+		else
+			return -1;
+	}
 	return 0;
 }
 

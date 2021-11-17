@@ -1,6 +1,6 @@
 #include "screen.h"
 
-int main()
+int screen_test()
 {
 	clear_screen();
 	draw_screen();
