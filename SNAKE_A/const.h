@@ -12,3 +12,4 @@ static const char emptyFill = ' ';
 static const char borderFill = '#';
 static const char headSymbol = 'H';
 static const char taleSymbol = '=';
+static const int moveDelay = 300;
