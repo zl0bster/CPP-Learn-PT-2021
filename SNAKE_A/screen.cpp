@@ -38,7 +38,7 @@ void clear_screen()
 	std::cout << line << '\n';
 #endif
 	copy_line(screenArray[0], sizeof(line), line);
-	copy_line(screenArray[yResolution], sizeof(line), line);
+	copy_line(screenArray[yResolution+1], sizeof(line), line);
 	//fill middle lines
 	for (int i = 1; i < (sizeof(line) - 2); i++)
 		line[i] = emptyFill;
@@ -48,7 +48,7 @@ void clear_screen()
 #if defined _DEBUG
 	std::cout << line << '\n';
 #endif
-	for (int i = 1; i < yResolution ; i++)
+	for (int i = 1; i < yResolution +1; i++)
 		copy_line(screenArray[i], sizeof(line), line);
 #if defined _DEBUG
 	std::cout <<"=====================" << '\n';
@@ -98,6 +98,6 @@ void draw_screen()
 {
 	//#TODO clear screen and print screenarray
 	system("CLS");
-	for (int i = 0; i < (yResolution + 1); i++)
+	for (int i = 0; i < (yResolution + 2); i++)
 		std::cout << screenArray[i] << '\n';
 }
