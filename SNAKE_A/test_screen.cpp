@@ -1,7 +1,6 @@
 #include "screen.h"
 #include "const.h"
 #include "snake.h"
-#include "windows.h"
 
 int test_screen()
 {

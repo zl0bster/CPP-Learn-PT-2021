@@ -21,7 +21,4 @@ enum Directions
 };
 
 void init_snake();
-
-
-
-void do_life_step(Actions snakeDir);
+void do_life_step(Directions snakeDir);

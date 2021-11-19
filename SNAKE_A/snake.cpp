@@ -82,19 +82,6 @@ void move_snake(Coord* sPos, size_t size, Directions direct)
 	}
 }
 
-void do_life_step(Directions newDir=NOP)
-{
-	using std::cout;
-
-	clear_screen();
-	change_snake_dir(newDir);
-	move_snake(&snakePos[0], snakeSize, snakeDir);
-	put_snake_to_field(&snakePos[0], snakeSize);
-	draw_screen();
-	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
-	Sleep(moveDelay);
-}
-
 void change_snake_dir(Directions newDir)
 {
 	// reverse movement is prohibited
@@ -119,4 +106,17 @@ void change_snake_dir(Directions newDir)
 			snakeDir = newDir;
 		break;
 	}
+}
+
+void do_life_step(Directions newDir = NOP)
+{
+	using std::cout;
+
+	clear_screen();
+	change_snake_dir(newDir);
+	move_snake(&snakePos[0], snakeSize, snakeDir);
+	put_snake_to_field(&snakePos[0], snakeSize);
+	draw_screen();
+	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
+	Sleep(moveDelay);
 }
