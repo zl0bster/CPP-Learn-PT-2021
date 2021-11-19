@@ -6,10 +6,10 @@
 
 enum Actions
 {
-	MOVE_UP,
-	MOVE_DN,
-	MOVE_RT,
-	MOVE_LT,
+	KEY_UP,
+	KEY_DN,
+	KEY_RT,
+	KEY_LT,
 	EXIT,
 	UNDEF,
 	OP1,

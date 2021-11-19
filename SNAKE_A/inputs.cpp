@@ -10,14 +10,14 @@ struct KeyMapItem
 };
 static KeyMapItem keyMap[]
 {
-	{75, MOVE_LT},
-	{77, MOVE_RT},
-	{72, MOVE_UP},
-	{80, MOVE_DN},
-	{'A', MOVE_LT},
-	{'D', MOVE_RT},
-	{'W', MOVE_UP},
-	{'S', MOVE_DN},
+	{75, KEY_LT},
+	{77, KEY_RT},
+	{72, KEY_UP},
+	{80, KEY_DN},
+	{'A', KEY_LT},
+	{'D', KEY_RT},
+	{'W', KEY_UP},
+	{'S', KEY_DN},
 	{'0', EXIT},
 	{'1', OP1}
 };

@@ -55,10 +55,10 @@ struct ActMapItem
 
 static ActMapItem actMap[]
 {
-	{MOVE_UP, do_up},
-	{MOVE_DN, do_dn},
-	{MOVE_LT, do_lt},
-	{MOVE_RT, do_rt},
+	{KEY_UP, do_up},
+	{KEY_DN, do_dn},
+	{KEY_LT, do_lt},
+	{KEY_RT, do_rt},
 	{EXIT, do_xt},
 	{UNDEF, do_ud},
 	{OP1, do_op1}

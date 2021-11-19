@@ -3,8 +3,12 @@
 const size_t MAX_SIZE = 10;
 const size_t _DELAY = 100;
 
-Coord snakePos[MAX_SIZE];
-size_t snakeSize = 5;
+namespace
+{
+	Coord snakePos[MAX_SIZE];
+	size_t snakeSize = 5;
+	Directions snakeDir = MOVE_RT;
+}
 
 void init_snake()
 {
@@ -36,7 +40,7 @@ void put_snake_to_field(Coord* sPos, size_t size)
 	put_sequence(snakeFigure, size);
 }
 
-void move_snake(Coord* sPos, size_t size, Actions direct)
+void move_snake(Coord* sPos, size_t size, Directions direct)
 {
 	using std::cout;
 	Coord temp = *sPos;
@@ -76,17 +80,43 @@ void move_snake(Coord* sPos, size_t size, Actions direct)
 		sPos->y = temp.y;
 		temp.y = tmp;
 	}
-
 }
 
-void do_life_step(Actions snakeDir)
+void do_life_step(Directions newDir=NOP)
 {
 	using std::cout;
 
 	clear_screen();
+	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
 	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
 	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
 	Sleep(moveDelay);
+}
+
+void change_snake_dir(Directions newDir)
+{
+	// reverse movement is prohibited
+	// direct movement makes no need to change
+	// only perpendicular direction makes sence
+	switch (newDir)
+	{
+	case MOVE_UP:
+		if ((snakeDir == MOVE_LT) || (snakeDir == MOVE_RT))
+			snakeDir = newDir;
+		break;
+	case MOVE_DN:
+		if ((snakeDir == MOVE_LT) || (snakeDir == MOVE_RT))
+			snakeDir = newDir;
+		break;
+	case MOVE_RT:
+		if ((snakeDir == MOVE_UP) || (snakeDir == MOVE_DN))
+			snakeDir = newDir;
+		break;
+	case MOVE_LT:
+		if ((snakeDir == MOVE_UP) || (snakeDir == MOVE_DN))
+			snakeDir = newDir;
+		break;
+	}
 }

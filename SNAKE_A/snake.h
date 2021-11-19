@@ -10,9 +10,15 @@ struct Coord {
 	int x;
 	int y;
 };
-//
-//Coord snakePos[MAX_SIZE];
-//size_t snakeSize = 5;
+
+enum Directions
+{
+	MOVE_UP,
+	MOVE_DN,
+	MOVE_RT,
+	MOVE_LT,
+	NOP
+};
 
 void init_snake();
 
