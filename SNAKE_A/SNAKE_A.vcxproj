@@ -142,12 +142,14 @@
     <ClInclude Include="const.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="screen.h" />
+    <ClInclude Include="snake.h" />
     <ClInclude Include="test_inputs.h" />
     <ClInclude Include="test_screen.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="inputs.cpp" />
     <ClCompile Include="screen.cpp" />
+    <ClCompile Include="snake.cpp" />
     <ClCompile Include="test_inputs.cpp" />
     <ClCompile Include="test_screen.cpp" />
     <ClCompile Include="test_sequence.cpp" />

@@ -6,10 +6,10 @@
 
 #include "inputs.h"
 
-static const char xResolution = 40;
-static const char yResolution = 8;
-static const char emptyFill = ' ';
-static const char borderFill = '#';
-static const char headSymbol = 'H';
-static const char taleSymbol = 'O';
-static const int moveDelay = 50;
+ const char xResolution = 40;
+ const char yResolution = 8;
+ const char emptyFill = ' \'';
+ const char borderFill = '#';
+ const char headSymbol = 'H';
+ const char taleSymbol = 'o';
+ const int moveDelay = 50;

@@ -10,7 +10,7 @@ static char screenArray[yResolution + 2][xResolution + 3];
 
 int init_screen()
 {
-	
+	/*
 	static const PrintSequenceItem border[] =
 	{
 		{0,0,'*'},
@@ -18,8 +18,9 @@ int init_screen()
 		{xResolution+1, 0, '+'},
 		{xResolution+1, yResolution, '*'}
 	};
-	return 0;
+	return 0;*/
 }
+
 void copy_line(char* dest, size_t length, const char* source)
 {
 	for (int i = 0; i < length; i++)
@@ -34,25 +35,17 @@ void clear_screen()
 	for (int i = 0; i < (sizeof(line) - 1); i++)
 		line[i] = borderFill;
 	line[xResolution + 2] = '\0';
-#if defined _DEBUG
-	std::cout << line << '\n';
-#endif
 	copy_line(screenArray[0], sizeof(line), line);
 	copy_line(screenArray[yResolution+1], sizeof(line), line);
+
 	//fill middle lines
 	for (int i = 1; i < (sizeof(line) - 2); i++)
 		line[i] = emptyFill;
 	line[0] = borderFill;
 	line[sizeof(line)-1] = borderFill;
 	line[xResolution + 2] = '\0';
-#if defined _DEBUG
-	std::cout << line << '\n';
-#endif
-	for (int i = 1; i < yResolution +1; i++)
+	for (int i = 1; i <= yResolution; i++)
 		copy_line(screenArray[i], sizeof(line), line);
-#if defined _DEBUG
-	std::cout <<"=====================" << '\n';
-#endif
 }
 
 int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
@@ -64,7 +57,7 @@ int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 	{
 		x = charSeq->xPos + 1;
 		y = charSeq->yPos + 1;		
-		posOK = ((x > 0) && (y > 0) && (x < xResolution) && (y < yResolution));
+		posOK = ((x > 0) && (y > 0) && (x <= xResolution) && (y <= yResolution));
 		if (posOK)
 			screenArray[y][x] = charSeq->symbol;
 		else
