@@ -21,8 +21,4 @@ void move_snake_test()
 		do_life_step(MOVE_DN);
 	for (int i = 60; i > 0; i--)
 		do_life_step(MOVE_RT);
-
-		//#TODO correct thru border movement
-		//#TODO check all directions
-	
 }

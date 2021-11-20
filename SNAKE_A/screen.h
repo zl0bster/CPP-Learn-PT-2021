@@ -3,6 +3,7 @@
 #define _SCREEN_SET
 
 #endif // 
+#include "game.h"
 
 struct PrintSequenceItem
 {
@@ -24,3 +25,4 @@ void draw_screen();
 
 int get_xResolution();
 int get_yResolution();
+void get_limits(Coord& lims);

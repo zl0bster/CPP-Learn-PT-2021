@@ -10,6 +10,7 @@ namespace
 	Directions snakeDir = MOVE_RT;
 }
 
+
 void init_snake()
 {
 	int refX = get_xResolution() / 2;
@@ -107,6 +108,15 @@ void change_snake_dir(Directions newDir)
 		break;
 	}
 }
+bool is_snake_here(Coord& pos)
+{
+	for (int i = 0; i < snakeSize; i++)
+	{
+		if (are_coords_equal(pos, snakePos[i]))
+			return true;
+	};
+	return false;
+}
 
 void do_life_step(Directions newDir = NOP)
 {
@@ -115,6 +125,14 @@ void do_life_step(Directions newDir = NOP)
 	clear_screen();
 	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
+	if (is_food_here(snakePos[0]))
+	{
+		snakeSize++;
+		init_food();
+	};
+	Coord head = snakePos[0];
+	if (is_snake_here(head))
+		game_over();
 	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
 	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';

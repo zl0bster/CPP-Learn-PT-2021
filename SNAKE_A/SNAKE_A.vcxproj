@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="const.h" />
+    <ClInclude Include="food.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="inputs.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="snake.h" />
@@ -147,6 +149,9 @@
     <ClInclude Include="test_screen.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="const.cpp" />
+    <ClCompile Include="food.cpp" />
+    <ClCompile Include="game.cpp" />
     <ClCompile Include="inputs.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="snake.cpp" />

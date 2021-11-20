@@ -4,9 +4,9 @@
 //#include <string.h>
 //#include <cstdlib>
 
-#include "inputs.h"
+
 #include "test_screen.h"
-#include "const.h"
+#include "game.h"
 
 void do_up()
 {

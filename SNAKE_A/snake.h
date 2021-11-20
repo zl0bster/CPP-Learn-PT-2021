@@ -1,15 +1,7 @@
 #pragma once
-#include "screen.h"
+#include "game.h"
 #include "const.h"
 #include "windows.h"
-
-//const size_t MAX_SIZE = 10;
-//const size_t _DELAY = 100;
-
-struct Coord {
-	int x;
-	int y;
-};
 
 enum Directions
 {
@@ -21,4 +13,5 @@ enum Directions
 };
 
 void init_snake();
+bool is_snake_here(Coord& pos);
 void do_life_step(Directions snakeDir);

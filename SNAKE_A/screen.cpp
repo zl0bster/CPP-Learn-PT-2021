@@ -3,7 +3,6 @@
 #include <string.h>
 #include <iostream>
 #include "screen.h"
-#include "const.h"
 
 
 static char screenArray[yResolution + 2][xResolution + 3];
@@ -75,6 +74,12 @@ int get_xResolution()
 int get_yResolution()
 {
 	return yResolution;
+}
+
+void get_limits(Coord& lims)
+{
+	lims.x = xResolution;
+	lims.y = yResolution;
 }
 
 void put_border()
