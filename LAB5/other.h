@@ -19,3 +19,4 @@ size_t find_min_arr_ind(int* arrInt, const size_t arrSize);
 int* find_min_arr_ptr(int* arrInt, const size_t arrSize);
 int MyStrCmp(const char* line1, const char* line2);
 char* get_month_name(int month);
+void count_freq_sym(const int * sorsArr, int sorsSize, int * freqArr, int valLim);

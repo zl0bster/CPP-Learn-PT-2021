@@ -105,4 +105,16 @@ char* get_month_name(int month)
 	if ((month < 1) || (month > 12))
 		return const_cast<char*>(monthSeq);
 	return const_cast<char*>(&monthSeq[month * 4]);
-};
+}
+
+void count_freq_sym(const int* sorsArr, int sorsSize, int* freqArr, int valLim)
+{
+	size_t tmp;
+	for (int i = sorsSize; i >= 0; i--)
+	{
+		tmp = static_cast<size_t> (*sorsArr);
+		if (tmp <= valLim)
+			(freqArr[tmp])++;
+		sorsArr++;
+	};
+}
