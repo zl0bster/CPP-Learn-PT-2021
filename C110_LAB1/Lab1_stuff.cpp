@@ -38,3 +38,24 @@ int summ_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols)
 	}
 	return arrSum;
 };
+
+void swap_pointers(char** p1, char** p2)
+{
+	char* ptemp = *p1;
+	*p1 = *p2;
+	*p2 = ptemp;
+}
+
+void Swap_p(int* x, int* y)
+{
+	int temp = *x;
+	*x = *y;
+	*y = temp;
+}
+
+void print_ch_array(char charArray[][chArLineLen])
+{
+	//system("CLS");
+	for (int i = 0; i < (chArLineNum); i++)
+		std::cout << charArray[i] << '\n';
+}
