@@ -317,6 +317,36 @@ int main()
 		//После заполнения массива с помощью генератора случайных чисел
 		//"сдвиньте" звездочки по столбцам вниз и распечатайте полученное
 		//"распределение"
+		std::cout << "\n" << "==================" << "\n";
+		p1 = &arr4[0][0];
+		for (size_t i = 0; i < (chArLineNum * chArLineLen); i++)
+		{
+			*p1 = (rand() % 2 == 0) ? '-' : '*';
+			if ((i + 1) % chArLineLen == 0)
+				*p1 = '\0';
+			p1++;
+		}
+		print_ch_array(arr4);
+		isUnsorted = true;
+		while (isUnsorted)
+		{
+			isUnsorted = false;
+			for (size_t x = 0; x < chArLineLen; x++)
+				for (size_t y = 0; y < (chArLineNum-1); y++)
+				{
+					//if (arr4[y][x + 1] == '\0')
+					//	break;
+					if (arr4[y+1][x] > arr4[y][x])
+					{
+						isUnsorted = true;
+						tmp = arr4[y][x];
+						arr4[y][x] = arr4[y+1][x];
+						arr4[y+1][x] = tmp;
+					}
+				}
+		}
+		std::cout << "\n" << "==================" << "\n";
+		print_ch_array(arr4);
 	}
 ///////////////////////////////////////////////////////////////
 //			Динамическое выделение памяти                    //
