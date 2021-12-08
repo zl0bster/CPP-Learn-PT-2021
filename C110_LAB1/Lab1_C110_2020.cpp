@@ -9,6 +9,8 @@
 #include <string.h>
 #include <cstdlib>
 #include "Lab1_stuff.h"
+#include "C:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h"	// for personal pc
+//#include "D:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h" // for avalon pc
 #define	  stop __asm nop
 
 int main()
@@ -357,7 +359,7 @@ int main()
 		//вычисляемыми в процессе выполнения программы - N*M.
 		//Задайте значения элементов помощью генератора случайных чисел.
 		size_t XS = 30; //N
-		size_t YS = 40;	//M
+		size_t YS = 20;	//M
 		int maxVal = 90;
 		int* arr5 = new int[YS*XS];
 		int** lineAr5 = new int* [YS];
@@ -369,17 +371,30 @@ int main()
 		print_array(arr5, 1, YS, XS);
 		//Задание 5б. В сформированном массиве отсортируйте каждую строку по
 		//убыванию значений. Используйте сортировку "выбором"
-
-
+		for (int i = 0; i < YS; i++)
+			sort1(lineAr5[i], XS, descend);
+		std::cout << "\n" << "==================" << "\n";
+		print_array(arr5, 1, YS, XS);
 		//Задание 5в. Объявите одномерный массив размерностью N.
 		//Сформируйте значение i-ого элемента одномерного массива  
 		//равным среднему значению элементов i-ой строки
 		//двухмерного массива
-
-
+		int* arr6 = new int[YS];	// array for avrage values
+		for (int y = 0; y < YS; y++)
+		{
+			int lineSum = 0;
+			int* px = lineAr5[y];
+			for (int x = 0; x < XS; x++)
+				lineSum += px[x];
+				//lineSum += *px++;
+			arr6[y] = lineSum / XS;
+		}
+		std::cout << "\n" << "==================" << "\n";
+		print_array(arr6, 1, 1, YS);
 		//Подсказка - не забудьте освободить память!
-		delete [] lineAr5;
+		delete[] lineAr5;
 		delete[] arr5;
+		delete[] arr6;
 	}
 /////////////////////////////////////////////////////////////////////////////
 //Задание 6. 

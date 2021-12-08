@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\LAB4\Sort_fx.cpp" />
     <ClCompile Include="Lab1_C110_2020.cpp" />
     <ClCompile Include="Lab1_stuff.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\LAB4\Sort_fx.h" />
     <ClInclude Include="Lab1_stuff.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
