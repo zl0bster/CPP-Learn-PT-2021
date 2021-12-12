@@ -16,6 +16,7 @@
 #define	  stop __asm nop
 				
 int _tmain()
+//int main()
 {
 
 	//Задание 1. 
