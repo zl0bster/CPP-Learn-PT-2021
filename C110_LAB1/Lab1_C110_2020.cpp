@@ -482,8 +482,8 @@ int main()
 
 		//free memory
 		for (size_t i = 0; i < nLines; i++)
-			delete strLines[i];
-		delete strLines;
+			delete  strLines[i];
+		delete [] strLines;
 	}
 
 

@@ -6,9 +6,11 @@
 *************************************************************/
 #include <iostream>
 #include <tchar.h>
+#include <cstdlib>
 //#include <cstdio>
 //#include <cstdarg>
 #include "other.h"
+#include "C:\Users\79110\source\repos\CPP Learn PT 2021\C110_LAB1\Lab1_stuff.h"
 
 
 #define	  stop __asm nop
@@ -17,17 +19,35 @@ int _tmain()
 {
 
 	//Задание 1. 
+	
 	//Указатели на массивы в качестве аргументов.
 	//Напишите два варианта функции печати элементов
 	//1. во встроенном двумерном массиве
 	//int ar[N][M] = {список инициализаторов};//подумайте - как и где должны быть заданы N и M
 	//Вызов функции PrintArray   может выглядеть так:
-
-//	PrintArray(ar, ... может быть, понадобится передать еще какие-нибудь данные);  //Важно! первый параметр- имя двумерного (!) массива
-	
-
+	//PrintArray(ar, ... может быть, понадобится передать еще какие-нибудь данные);  //Важно! первый параметр- имя двумерного (!) массива
 	//2. в динамическом двумерном массиве (обе размерности вычисляются)
+	{
+		const size_t N = 4;
+		const size_t M = 3;
+		const size_t K = 3;
+		int arr2[N][M][K];
+		for (int i = 0; i < N; i++)
+			for (int j = 0; j < M; j++)
+				for (int k = 0; k < K; k++)
+					arr2[i][j][k] = i + 1;
+		print_array(&arr2[0][0][0], N, M, K);
 
+		size_t xS = 20;
+		size_t yS = 14;
+		unsigned int maxVal = 30;
+		size_t arr1Size = xS * yS;
+		int* arr1 = new int[arr1Size];
+		for (unsigned int i = 0; i < arr1Size; i++)
+			arr1[i] = rand() % maxVal;
+		print_array(&arr1[0], 1, yS, xS);
+		delete [] arr1;
+	}
 /////////////////////////////////////////////////////////////////////////////
 	//Задание 2.
 	//Передача указателя на встроенный массив в качестве параметра функции.
