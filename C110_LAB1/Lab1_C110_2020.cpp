@@ -398,52 +398,93 @@ int main()
 	}
 /////////////////////////////////////////////////////////////////////////////
 //Задание 6. 
-	//Реализуйте задание №2, используя не встроенные, а ДИНАМИЧЕСКИЕ массивы (массив?).
-	// Важно! 
-	//Так как строки могут быть разной длины, /эффективным решением было бы 
-	//отводить под каждую строку ровно столько байтов, сколько требуется для ее хранения.
-	//
-	//Для того, чтобы определить длину введенной строки можно воспользоваться 
-	//функцией strlen 
-	//size_t strlen(char const* _Str);
-	
-	//При этом значение количества строк сформируйте с помощью потока ввода
-	int nStringNumber;
-	   	 
+	{
+		//Реализуйте задание №2, используя не встроенные, а ДИНАМИЧЕСКИЕ массивы (массив?).
+		// Важно! 
+		//Так как строки могут быть разной длины, /эффективным решением было бы 
+		//отводить под каждую строку ровно столько байтов, сколько требуется для ее хранения.
+		//
+		//Для того, чтобы определить длину введенной строки можно воспользоваться 
+		//функцией strlen 
+		//size_t strlen(char const* _Str);
 
-	//Цикл ввода строк:
-
-	// Для ввода строки нужно использовать буфер "достаточного" размера. 
-	// В качестве такого буфера обычно используется встроенный массив.
-	// Для того, чтобы введенную строку  скопировать из буфера в массив  строк,
-	// можно воспользоваться функцией strcpy
-	//char* strcpy_s(	char* _Dest,  char const* _Source);
-	//  или
-	//errno_t strcpy_s(char* _Dest, size_t  _SizeInBytes, char const* _Source); 
-	//где _SizeInBytes - размер "приемного" буфера.
-	//Замечание: 
-	//скорее всего, при компиляции Вы получите следующую ошибку:
-	//Severity	Code	Description	Project	File	Line	Suppression State
-	//	Error	C4996	'strcpy': This function or variable may be unsafe.
-	//Consider using strcpy_s instead.To disable deprecation, use _CRT_SECURE_NO_WARNINGS.
-	
-	//Это происходит потому, что функция strcpy считается небезопасной.
-	
-	//Для того, чтобы пользоваться функцией strcpy, а не strcpy_s, можно
-	//  - либо объявить макрос #define _CRT_SECURE_NO_WARNINGS   (обязательно ДО всех #include !!!!!)
-	//- либо установить режим без доп. проверки на безопасность Properties->C/C++ ->General->SDL checs -> No
-	
-
-	//Цикл сортировки строк по методу "всплывающего пузырька" в
-	//порядке возрастания кода первого символа
+		//При этом значение количества строк сформируйте с помощью потока ввода
+		int nStringNumber;
 
 
+		//Цикл ввода строк:
 
+		// Для ввода строки нужно использовать буфер "достаточного" размера. 
+		// В качестве такого буфера обычно используется встроенный массив.
+		// Для того, чтобы введенную строку  скопировать из буфера в массив  строк,
+		// можно воспользоваться функцией strcpy
+		//char* strcpy_s(	char* _Dest,  char const* _Source);
+		//  или
+		//errno_t strcpy_s(char* _Dest, size_t  _SizeInBytes, char const* _Source); 
+		//где _SizeInBytes - размер "приемного" буфера.
+		//Замечание: 
+		//скорее всего, при компиляции Вы получите следующую ошибку:
+		//Severity	Code	Description	Project	File	Line	Suppression State
+		//	Error	C4996	'strcpy': This function or variable may be unsafe.
+		//Consider using strcpy_s instead.To disable deprecation, use _CRT_SECURE_NO_WARNINGS.
 
+		//Это происходит потому, что функция strcpy считается небезопасной.
 
-	//Освобождение занятой памяти:
+		//Для того, чтобы пользоваться функцией strcpy, а не strcpy_s, можно
+		//  - либо объявить макрос #define _CRT_SECURE_NO_WARNINGS   (обязательно ДО всех #include !!!!!)
+		//- либо установить режим без доп. проверки на безопасность Properties->C/C++ ->General->SDL checs -> No
 
+		//Цикл сортировки строк по методу "всплывающего пузырька" в
+		//порядке возрастания кода первого символа
 
+		//Освобождение занятой памяти:
+	}
+	{
+		using std::cout;
+		unsigned int nLines = rand() % 12 + 10;
+		char** strLines = new char* [nLines];
+
+		//fill strings
+		for (size_t i = 0; i < nLines; i++)
+		{
+			unsigned int lineLen = rand() % 32 + 10;
+			//strLines[i] = get_rnd_str(rand() % 32 + 10);
+			char* newStr = new char[lineLen];
+			strLines[i] = newStr;
+			get_rnd_str1(newStr, lineLen);
+		}
+
+		//print lines
+		std::cout << "\n" << "+++++++++++++++++++++" << "\n";
+		for (size_t i = 0; i < nLines; i++)
+			std::cout << strLines[i]<<'\n';
+
+		//sort lines
+		bool isUnsorted = true;
+		while (isUnsorted)
+		{
+			isUnsorted = false;
+			for (size_t n = 0; n < (nLines - 1); n++)
+			{
+				//cout << cPointers[n] << "\t" << cPointers[n + 1] << "\t" << strcmp(cPointers[n], cPointers[n + 1])<< "\n";
+				if (strcmp(strLines[n], strLines[n + 1]) < 0)
+				{
+					swap_pointers(&strLines[n], &strLines[n + 1]);
+					isUnsorted = true;
+				}
+			}
+		}
+		 
+		//print lines
+		std::cout << "\n" << "+++++++++++++++++++++" << "\n";
+		for (size_t i = 0; i < nLines; i++)
+			std::cout << strLines[i] << '\n';
+
+		//free memory
+		for (size_t i = 0; i < nLines; i++)
+			delete strLines[i];
+		delete strLines;
+	}
 
 
 	return 0; 

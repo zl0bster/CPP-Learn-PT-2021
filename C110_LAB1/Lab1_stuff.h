@@ -10,3 +10,5 @@ int summ_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols);
 void swap_pointers(char** p1, char** p2);
 void Swap_p(int* x, int* y);
 void print_ch_array(char charArray[][chArLineLen]);
+char* get_rnd_str(size_t maxLen);
+void get_rnd_str1(char* newStr, size_t maxLen);
