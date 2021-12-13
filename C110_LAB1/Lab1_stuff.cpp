@@ -21,6 +21,25 @@ void print_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols)
 		cout << "\n";
 	}
 };
+void print_array(const float* arr, size_t nLayers, size_t nLines, size_t nCols)
+{
+	using std::cout;
+	cout << "printing float values" << '\n';
+	for (int i = 0; i < nLayers; i++)
+	{
+		for (int j = 0; j < nLines; j++)
+		{
+			for (int k = 0; k < nCols; k++)
+			{
+				//cout << arr[i][j][k] << ' ';
+				cout << *arr << ' ';
+				arr++;
+			}
+			cout << "\n";
+		}
+		cout << "\n";
+	}
+};
 
 int summ_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols)
 {
@@ -67,7 +86,7 @@ char* get_rnd_str(size_t maxLen)
 	const char* charSet1 = "aeiou ";
 	size_t genSetLen = strlen(genCharSet);
 	size_t set1Len = strlen(charSet1);
-	static char* newStr = new char[maxLen];
+	char* newStr = new char[maxLen];
 #if _DEBUG
 	cout << maxLen << '\t' << genSetLen << '\t' << set1Len << '\n';
 #endif
