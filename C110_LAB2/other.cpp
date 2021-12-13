@@ -1,35 +1,94 @@
-//#include "other.h"
+#include "other.h"
 #include <string.h>
 #include <cstdlib>
+#include <iostream>
+//#include <cstdio>
+#include <cstdarg>
 ///////////////////////////////////////////////////
 
-//Подсказка-заготовка для задания 5а
-//Без использования макросов
-/*
+//РџРѕРґСЃРєР°Р·РєР°-Р·Р°РіРѕС‚РѕРІРєР° РґР»СЏ Р·Р°РґР°РЅРёСЏ 5Р°
+//Р‘РµР· РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РјР°РєСЂРѕСЃРѕРІ
+
 void VarArgs(int arg1,...)
 {
-	int number = 0;	//счетчик элементов
-	//Объявите указатель на int и инициализируйте его адресом
-	//первого аргумента
-	
-	//Пока не достигнут конец списка:
-	// а) печать значения очередного аргумента
-	// б) модификация указателя (он должен указывать на
-	//следующий аргумент списка)
-	// в) увеличить счетчик элементов
-
-
-
-
-	//Печать числа элементов
-
+	int number = 0;	//СЃС‡РµС‚С‡РёРє СЌР»РµРјРµРЅС‚РѕРІ
+	//РћР±СЉСЏРІРёС‚Рµ СѓРєР°Р·Р°С‚РµР»СЊ РЅР° int Рё РёРЅРёС†РёР°Р»РёР·РёСЂСѓР№С‚Рµ РµРіРѕ Р°РґСЂРµСЃРѕРј
+	//РїРµСЂРІРѕРіРѕ Р°СЂРіСѓРјРµРЅС‚Р°
+	int* pArg = &arg1;
+	//РџРѕРєР° РЅРµ РґРѕСЃС‚РёРіРЅСѓС‚ РєРѕРЅРµС† СЃРїРёСЃРєР°:
+	// Р°) РїРµС‡Р°С‚СЊ Р·РЅР°С‡РµРЅРёСЏ РѕС‡РµСЂРµРґРЅРѕРіРѕ Р°СЂРіСѓРјРµРЅС‚Р°
+	// Р±) РјРѕРґРёС„РёРєР°С†РёСЏ СѓРєР°Р·Р°С‚РµР»СЏ (РѕРЅ РґРѕР»Р¶РµРЅ СѓРєР°Р·С‹РІР°С‚СЊ РЅР°
+	//СЃР»РµРґСѓСЋС‰РёР№ Р°СЂРіСѓРјРµРЅС‚ СЃРїРёСЃРєР°)
+	// РІ) СѓРІРµР»РёС‡РёС‚СЊ СЃС‡РµС‚С‡РёРє СЌР»РµРјРµРЅС‚РѕРІ
+	std::cout << "-\n";
+	while (*pArg != 0)
+	{
+		std::cout << *pArg << '\t';
+		pArg++;
+		number++;
+	}
+	//РџРµС‡Р°С‚СЊ С‡РёСЃР»Р° СЌР»РµРјРµРЅС‚РѕРІ
+	std::cout << ":= " << number << '\n';
 }
-*/
-//#include "other.h"
+
+void VarArgs1(int arg1,...)
+{
+	int number = 0;	//СЃС‡РµС‚С‡РёРє СЌР»РµРјРµРЅС‚РѕРІ
+	int i = arg1;
+	va_list pArg;
+	va_start(pArg, arg1);
+	std::cout << "=\n";
+	while (i != 0)
+	{
+		std::cout << i << '\t';
+		i = va_arg(pArg, int);
+		number++;
+	}
+	va_end(pArg);
+	std::cout << ":= " << number << '\n';
+}
 
 ///////////////////////////////////////////////////
+char* convert_date_to_str(date  const& date1)
+{
+	char* dateStr = new char[11];
+	return dateStr;
+}
 
+void print_date(date const& date1)
+{
+	std::cout << date1.yr << '-' << date1.mon << '-' << date1.day;
+}
 
+unsigned int count_day_N_from_Date(date const& date1)
+{
+	unsigned int dayN = date1.day;
+	short yrType = (date1.yr % 4 == 0) ? 1 : 0;
+	short monthN = (date1.mon <= 12) ? date1.mon : 12;
+	for (size_t i = 0; i < (monthN - 1); i++)
+		dayN += nDayTab[yrType][i];
+	return dayN;
+}
+
+date* count_Date_from_N_days(unsigned int yr, unsigned int day)
+{
+	date* date1 = new date;
+	date1->yr = yr;
+	short yrType = (yr % 4 == 0) ? 1 : 0;
+	short dayN = (day <= 366) ? day : 366;
+	for (size_t i = 0; i < 12; i++)
+	{
+		short dayN1 = dayN - nDayTab[yrType][i];
+		if (dayN1 <= 0)
+		{
+			date1->mon = i + 1;
+			date1->day = dayN;
+			break;
+		}
+		dayN = dayN1;
+	}
+	return date1;
+}
 
 void Sort(char* pcFirst, int nNumber, int size,
 	void(*Swap)(void*, void*), int(*Compare)(void*, void*))
@@ -40,8 +99,8 @@ void Sort(char* pcFirst, int nNumber, int size,
 		{
 			char* pCurrent = pcFirst + j * size;
 			char* pPrevious = pcFirst + (j - 1)*size;
-			if ((*Compare)(pPrevious, pCurrent) > 0)//требуется
-												//переставить
+			if ((*Compare)(pPrevious, pCurrent) > 0)//С‚СЂРµР±СѓРµС‚СЃСЏ
+												//РїРµСЂРµСЃС‚Р°РІРёС‚СЊ
 				(*Swap)(pPrevious, pCurrent);
 		}
 }
