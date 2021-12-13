@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include "Lab1_stuff.h"
 //#include "C:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h"	// for personal pc
-#include "D:\Users\Pisarev\CPP-Learn-PT-2021\LAB4\Sort_fx.h" // for avalon pc
+#include "..\LAB4\Sort_fx.h" // for avalon pc
 #define	  stop __asm nop
 
 int main()

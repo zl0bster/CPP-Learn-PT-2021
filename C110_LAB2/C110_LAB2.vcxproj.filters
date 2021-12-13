@@ -21,9 +21,21 @@
     <ClCompile Include="other.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LAB2_calc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LAB2_arr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="other.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LAB2_calc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LAB2_arr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

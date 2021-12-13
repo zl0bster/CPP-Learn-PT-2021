@@ -140,10 +140,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LAB2_arr.cpp" />
+    <ClCompile Include="LAB2_calc.cpp" />
     <ClCompile Include="Lab2_С110_2020.cpp" />
     <ClCompile Include="other.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="LAB2_arr.h" />
+    <ClInclude Include="LAB2_calc.h" />
     <ClInclude Include="other.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
