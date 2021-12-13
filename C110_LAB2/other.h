@@ -1,6 +1,23 @@
 
-//Прототипы функций, используемых в данном задании :
+//РџСЂРѕС‚РѕС‚РёРїС‹ С„СѓРЅРєС†РёР№, РёСЃРїРѕР»СЊР·СѓРµРјС‹С… РІ РґР°РЅРЅРѕРј Р·Р°РґР°РЅРёРё :
 //void VarArgs(int arg1, ...);
+
+struct date {
+	unsigned int yr;
+	unsigned int mon;
+	unsigned int day;
+};
+const int nDayTab[2][12] = {
+	{31,28,31,30,31,30,31,31,30,31,30,31}, //РЅРµРІРёСЃРѕРєРѕСЃРЅС‹Р№ РіРѕРґ
+	{31,29,31,30,31,30,31,31,30,31,30,31} };	//РІРёСЃРѕРєРѕСЃРЅС‹Р№ РіРѕРґ
+
+void VarArgs(int arg1, ...);
+void VarArgs1(int arg1, ...);
+
+char* convert_date_to_str(date  const & date1);
+void print_date(date const & date1);
+unsigned int count_day_N_from_Date(date const& date1);
+date * count_Date_from_N_days( unsigned int yr, unsigned int day);
 
 void Sort(char* pcFirst, int nNumber, int size,
 void(*Swap)(void*, void*), int(*Compare)(void*, void*));
