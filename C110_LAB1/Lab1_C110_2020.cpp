@@ -9,8 +9,8 @@
 #include <string.h>
 #include <cstdlib>
 #include "Lab1_stuff.h"
-#include "C:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h"	// for personal pc
-//#include "D:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h" // for avalon pc
+//#include "C:\Users\79110\source\repos\CPP Learn PT 2021\LAB4\Sort_fx.h"	// for personal pc
+#include "D:\Users\Pisarev\CPP-Learn-PT-2021\LAB4\Sort_fx.h" // for avalon pc
 #define	  stop __asm nop
 
 int main()
@@ -237,6 +237,10 @@ int main()
 		cout << "\n" << "==================" << "\n";
 		print_array(&arr2[0][0][0], N, M, K);
 		{
+			int (*p1)[K]= arr2[0];
+			int (*p2)[K] = arr2[1];
+		}
+		{
 			//Замечание: НЕ НУЖНО МОДИФИЦИРОВАТЬ ВЫРАЖЕНИЯ СПРАВА ОТ ЗНАКА РАВЕНСТВА!!!
 			//int (*pp1)[K] = arr2[0];
 			/*... = dArray[i];
@@ -294,24 +298,43 @@ int main()
 			//было - '*' '_' '_' '*' '*' '_' '*' '_' '*' '_'
 			//стало: '*' '*' '*' '*' '*' '_' '_' '_' '_' '_'
 			//и распечатайте массив по строкам - "постройте распределение"
-		bool isUnsorted = true;
-		char tmp;
-		while (isUnsorted)
+		//bool isUnsorted = true;
+		//char tmp;
+		//while (isUnsorted)
+		//{
+		//	isUnsorted = false;
+		//	for (size_t y = 0; y < chArLineNum; y++)
+		//		for (size_t x = 0; x < chArLineLen; x++)
+		//		{
+		//			if (arr4[y][x + 1] == '\0')
+		//				break;
+		//			if (arr4[y][x + 1] > arr4[y][x])
+		//			{
+		//				isUnsorted = true;
+		//				tmp = arr4[y][x];
+		//				arr4[y][x] = arr4[y][x + 1];
+		//				arr4[y][x + 1] = tmp;
+		//			}
+		//		}
+		//}
+
 		{
-			isUnsorted = false;
 			for (size_t y = 0; y < chArLineNum; y++)
+			{
+				char* ptemp = arr4[y];
+				size_t k = 0;
 				for (size_t x = 0; x < chArLineLen; x++)
 				{
-					if (arr4[y][x + 1] == '\0')
-						break;
-					if (arr4[y][x + 1] > arr4[y][x])
+					if (ptemp[x] == '*')
 					{
-						isUnsorted = true;
-						tmp = arr4[y][x];
-						arr4[y][x] = arr4[y][x + 1];
-						arr4[y][x + 1] = tmp;
+						ptemp[x] = '_';
+						ptemp[k] = '*';
+						k++;
 					}
+
 				}
+
+			}
 		}
 		std::cout << "\n" << "==================" << "\n";
 		print_ch_array(arr4);
@@ -329,23 +352,36 @@ int main()
 			p1++;
 		}
 		print_ch_array(arr4);
-		isUnsorted = true;
-		while (isUnsorted)
+		//isUnsorted = true;
+		//while (isUnsorted)
+		//{
+		//	isUnsorted = false;
+		//	for (size_t x = 0; x < chArLineLen; x++)
+		//		for (size_t y = 0; y < (chArLineNum-1); y++)
+		//		{
+		//			//if (arr4[y][x + 1] == '\0')
+		//			//	break;
+		//			if (arr4[y+1][x] > arr4[y][x])
+		//			{
+		//				isUnsorted = true;
+		//				tmp = arr4[y][x];
+		//				arr4[y][x] = arr4[y+1][x];
+		//				arr4[y+1][x] = tmp;
+		//			}
+		//		}
+		//}
+		for (size_t x = 0; x < chArLineLen; x++)
 		{
-			isUnsorted = false;
-			for (size_t x = 0; x < chArLineLen; x++)
-				for (size_t y = 0; y < (chArLineNum-1); y++)
+			size_t k = 0;
+			for (size_t y = 0; y < (chArLineNum); y++)
+			{
+				if (arr4[y][x] == '-')
 				{
-					//if (arr4[y][x + 1] == '\0')
-					//	break;
-					if (arr4[y+1][x] > arr4[y][x])
-					{
-						isUnsorted = true;
-						tmp = arr4[y][x];
-						arr4[y][x] = arr4[y+1][x];
-						arr4[y+1][x] = tmp;
-					}
+					arr4[y][x] = '*';
+					arr4[k][x] = '-';
+					k++;
 				}
+			}
 		}
 		std::cout << "\n" << "==================" << "\n";
 		print_ch_array(arr4);
@@ -379,7 +415,7 @@ int main()
 		//Сформируйте значение i-ого элемента одномерного массива  
 		//равным среднему значению элементов i-ой строки
 		//двухмерного массива
-		int* arr6 = new int[YS];	// array for avrage values
+		float* arr6 = new float[YS];	// array for avrage values
 		for (int y = 0; y < YS; y++)
 		{
 			int lineSum = 0;
@@ -387,7 +423,7 @@ int main()
 			for (int x = 0; x < XS; x++)
 				lineSum += px[x];
 				//lineSum += *px++;
-			arr6[y] = lineSum / XS;
+			arr6[y] = static_cast <float>(lineSum) / XS;
 		}
 		std::cout << "\n" << "==================" << "\n";
 		print_array(arr6, 1, 1, YS);
@@ -449,9 +485,10 @@ int main()
 		{
 			unsigned int lineLen = rand() % 32 + 10;
 			//strLines[i] = get_rnd_str(rand() % 32 + 10);
-			char* newStr = new char[lineLen];
-			strLines[i] = newStr;
-			get_rnd_str1(newStr, lineLen);
+			//char* newStr = new char[lineLen];
+			//strLines[i] = newStr;
+			//get_rnd_str1(newStr, lineLen);
+			strLines[i] = get_rnd_str(lineLen);
 		}
 
 		//print lines
@@ -482,7 +519,7 @@ int main()
 
 		//free memory
 		for (size_t i = 0; i < nLines; i++)
-			delete  strLines[i];
+			delete [] strLines[i];
 		delete [] strLines;
 	}
 
