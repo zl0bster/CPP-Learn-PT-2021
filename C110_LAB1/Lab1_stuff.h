@@ -6,6 +6,7 @@ const size_t chArLineNum = 20;
 
 void print_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols);
 // prints only 3d arrays
+void print_array(const float* arr, size_t nLayers, size_t nLines, size_t nCols);
 int summ_array(const int* arr, size_t nLayers, size_t nLines, size_t nCols);
 void swap_pointers(char** p1, char** p2);
 void Swap_p(int* x, int* y);
