@@ -4,6 +4,7 @@
 
 #endif // 
 #include "game.h"
+#include "const.h"
 
 struct PrintSequenceItem
 {

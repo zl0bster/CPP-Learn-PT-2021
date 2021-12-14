@@ -19,7 +19,7 @@ static KeyMapItem keyMap[]
 	{'W', KEY_UP},
 	{'S', KEY_DN},
 	{'0', EXIT},
-	{'1', OP1}
+	{'9', OP1}
 };
 
 int read_input()

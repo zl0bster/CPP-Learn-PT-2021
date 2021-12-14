@@ -2,7 +2,11 @@
 #include <ctype.h>
 #include <string.h>
 #include <iostream>
+
+#include "winconsole.h"
+
 #include "screen.h"
+#include "const.h"
 
 
 static char screenArray[yResolution + 2][xResolution + 3];
@@ -16,8 +20,8 @@ int init_screen()
 		{0,yResolution+1, '+'},
 		{xResolution+1, 0, '+'},
 		{xResolution+1, yResolution, '*'}
-	};
-	return 0;*/
+	};*/
+	return 0;
 }
 
 void copy_line(char* dest, size_t length, const char* source)
@@ -81,21 +85,22 @@ void get_limits(Coord& lims)
 	lims.x = xResolution;
 	lims.y = yResolution;
 }
-
-void put_border()
-{
-	//#TODO put border char sequence to screen array
-}
-
-void put_char_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
-{
-	//#TODO no check position and no correction 
-}
+//
+//void put_border()
+//{
+//	//#TODO put border char sequence to screen array
+//}
+//
+//void put_char_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
+//{
+//	//#TODO no check position and no correction 
+//}
 
 void draw_screen()
 {
 	//#TODO clear screen and print screenarray
-	system("CLS");
+	//system("CLS");
+	setCursorPosition(0, 0);
 	for (int i = 0; i < (yResolution + 2); i++)
 		std::cout << screenArray[i] << '\n';
 }

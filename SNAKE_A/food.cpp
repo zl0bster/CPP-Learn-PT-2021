@@ -1,4 +1,9 @@
+
+#include <ctype.h>
+
+#include "screen.h"
 #include "food.h"
+#include "snake.h"
 
 using std::rand;
 

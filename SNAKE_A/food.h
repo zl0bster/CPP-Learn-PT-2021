@@ -1,5 +1,5 @@
 #pragma once
-#include "game.h"
+#include "const.h"
 
 bool is_food_here(Coord& pos);
 void init_food();

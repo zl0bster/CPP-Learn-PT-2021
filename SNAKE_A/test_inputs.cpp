@@ -6,7 +6,8 @@
 
 
 #include "test_screen.h"
-#include "game.h"
+#include "inputs.h"
+
 
 void do_up()
 {
@@ -43,6 +44,7 @@ void do_ud()
 void do_op1()
 {
 	//test_screen();
+	std::cout << "KEY OP1\t";
 	move_snake_test();
 }
 using actFx = void (*)();

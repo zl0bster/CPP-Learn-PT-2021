@@ -1,4 +1,7 @@
 #include "snake.h"
+#include "const.h"
+#include "screen.h"
+#include "food.h"
 
 const size_t MAX_SIZE = 10;
 const size_t _DELAY = 100;
