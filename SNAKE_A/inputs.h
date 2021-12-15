@@ -13,7 +13,8 @@ enum Actions
 	EXIT,
 	UNDEF,
 	OP1,
-	OP2
+	OP2,
+	OP3
 };
 
 int read_input();

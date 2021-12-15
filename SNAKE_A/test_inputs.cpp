@@ -54,6 +54,15 @@ void do_op2()
 	std::cout << "KEY OP2\t";
 	move_snake_test1();
 }
+
+
+void do_op3()
+{
+	//test_screen();
+	std::cout << "KEY OP2\t";
+	move_snake_test2();
+}
+
 using actFx = void (*)();
 
 struct ActMapItem
@@ -71,7 +80,8 @@ static ActMapItem actMap[]
 	{EXIT, do_xt},
 	{UNDEF, do_ud},
 	{OP1, do_op1},
-	{OP2, do_op2}
+	{OP2, do_op2},
+	{OP3, do_op3}
 };
 
 int test_inputs()

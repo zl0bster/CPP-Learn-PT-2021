@@ -14,7 +14,7 @@ struct Coord {
 };
 
 
- const char xResolution = 40;
+ const char xResolution = 24;
  const char yResolution = 8;
  const char emptyFill = ' \'';
  const char borderFill = '#';

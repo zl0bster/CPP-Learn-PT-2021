@@ -55,19 +55,19 @@ void move_snake(Coord* sPos, size_t size, Directions direct)
 	switch (direct)
 	{
 	case MOVE_LT:
-		if (sPos->x <= limLT) sPos->x = limRT - 1;
+		if (sPos->x <= limLT) sPos->x = limRT;
 		else sPos->x--;
 		break;
 	case MOVE_RT:
-		if (sPos->x >= limRT - 1) sPos->x = limLT;
+		if (sPos->x >= limRT) sPos->x = limLT;
 		else sPos->x++;
 		break;
 	case MOVE_UP:
-		if (sPos->y <= limUP) sPos->y = limDN - 1;
+		if (sPos->y <= limUP) sPos->y = limDN;
 		else sPos->y--;
 		break;
 	case MOVE_DN:
-		if (sPos->y >= limDN - 1) sPos->y = limUP;
+		if (sPos->y >= limDN) sPos->y = limUP;
 		else sPos->y++;
 		break;
 	}
@@ -137,6 +137,7 @@ void do_life_step(Directions newDir = NOP)
 	if (is_snake_here(head))
 		game_over();
 	put_snake_to_field(&snakePos[0], snakeSize);
+	print_food();
 	draw_screen();
 	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
 	Sleep(moveDelay);
