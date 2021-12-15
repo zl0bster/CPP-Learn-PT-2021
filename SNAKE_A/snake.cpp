@@ -113,7 +113,7 @@ void change_snake_dir(Directions newDir)
 }
 bool is_snake_here(Coord& pos)
 {
-	for (int i = 0; i < snakeSize; i++)
+	for (int i = 1; i < snakeSize; i++)
 	{
 		if (are_coords_equal(pos, snakePos[i]))
 			return true;
@@ -128,12 +128,12 @@ void do_life_step(Directions newDir = NOP)
 	clear_screen();
 	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
-	if (is_food_here(snakePos[0]))
+	Coord head = snakePos[0];
+	if (is_food_here(head))
 	{
 		snakeSize++;
 		init_food();
 	};
-	Coord head = snakePos[0];
 	if (is_snake_here(head))
 		game_over();
 	put_snake_to_field(&snakePos[0], snakeSize);

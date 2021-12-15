@@ -5,7 +5,7 @@
 
 void game_over()
 {
-	std::cout << "KEY EXIT";
+	std::cout << "GAME OVER";
 	_getch();
 	std::exit(EXIT_SUCCESS);
 }
