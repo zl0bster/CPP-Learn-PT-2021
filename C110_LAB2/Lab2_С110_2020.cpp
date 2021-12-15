@@ -164,35 +164,58 @@ int _tmain()
 			//<0 - первый элемент меньше, чем второй
 			//=0 - равны
 			//>0 - первый элемент больше, чем второй
-			/*
-				int nAr[]=...	//массив для сортировки
-
-				//Печать исходного массива
-
-				//Вызов сортировки
-				int nTotal=...			//количество элементов в массиве
-				Sort(reinterpret_cast<char*>(&nAr[0]), nTotal, sizeof(int), SwapInt, CmpInt);
-
-				//Печать результатов сортировки
-
-				stop
-			*/
-			/*
-			//Задание 5б. По аналогии с 5а создайте вспомогательные
-			//функции - SwapDouble и CmpDouble и вызовите функцию Sort
-			//для сортировки массива вещественных значений.
-			*/
-			/*
-			//Задание 5в*. По аналогии с 5а создайте вспомогательные
-			//функции - SwapStr и CmpStr и вызовите функцию Sort
-			//для сортировки массива указателей на строки.
-
-			const char* arStr[] = { "QQQ", "SDF", "ABC","Abba", "ENFR","En",. . . };
-			//Замечание:
-			//в массиве линейно лежат АДРЕСА строк, надо передать АДРЕС массива,
-				Sort(reinterpret_cast<char*>(&arStr[0])), nTotal, sizeof(???), SwapStr, CmpStr);
-			*/
-			///////////////////////////////////////////////////////////////////
+	{
+		int nAr[] = {5,17,-3,21,5,0,13,7,99,6};		//массив для сортировки
+		int nTotal = sizeof(nAr) / sizeof(nAr[0]);	//количество элементов в массиве
+		//Печать исходного массива
+		for (int i = 0; i < nTotal; i++)
+			std::cout << nAr[i] << ' ';
+		std::cout << '\n';
+		//Вызов сортировки
+		Sort(reinterpret_cast<char*>(&nAr[0]), nTotal, sizeof(int), SwapInt, CmpInt);
+		//Печать результатов сортировки
+		for (int i = 0; i < nTotal; i++)
+			std::cout << nAr[i] << ' ';
+		std::cout << '\n';
+	stop
+	}
+	
+	//Задание 5б. По аналогии с 5а создайте вспомогательные
+	//функции - SwapDouble и CmpDouble и вызовите функцию Sort
+	//для сортировки массива вещественных значений.
+	{
+		float fAr[] = { 5.001,17,-3,21,5.0,0,13,7,99,6 };		//массив для сортировки
+		int nTotal = sizeof(fAr) / sizeof(fAr[0]);	//количество элементов в массиве
+		//Печать исходного массива
+		for (int i = 0; i < nTotal; i++)
+			std::cout << fAr[i] << ' ';
+		std::cout << '\n';
+		//Вызов сортировки
+		Sort(reinterpret_cast<char*>(&fAr[0]), nTotal, sizeof(int), SwapFloat, CmpFloat);
+		//Печать результатов сортировки
+		for (int i = 0; i < nTotal; i++)
+			std::cout << fAr[i] << ' ';
+		std::cout << '\n';
+		stop
+	}
+	
+	//Задание 5в*. По аналогии с 5а создайте вспомогательные
+	//функции - SwapStr и CmpStr и вызовите функцию Sort
+	//для сортировки массива указателей на строки.
+	{
+		const char* arStr[] = { "QQQ", "SDF", "ABC","Abba", "ENFR","En" };
+		int nTotal = sizeof(arStr) / sizeof(arStr[0]);
+		for (int i = 0; i < nTotal; i++)
+			std::cout << arStr[i] << ' ';
+		std::cout << '\n';
+		//Замечание:
+		//в массиве линейно лежат АДРЕСА строк, надо передать АДРЕС массива,
+		Sort(reinterpret_cast<char*>(&arStr[0]), nTotal, sizeof(char*), SwapStr, CmpStr);
+		for (int i = 0; i < nTotal; i++)
+			std::cout << arStr[i] << ' ';
+		std::cout << '\n';
+	}
+///////////////////////////////////////////////////////////////////
 
 //Задание 6. Массивы указателей на функцию.
 	{
