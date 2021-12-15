@@ -134,7 +134,7 @@ const char* GetString2()
 //-----------------------------------------------------------------------
 const char* GetString3()
 {
-	char str[] = "Little";
+	static char str[] = "Little";
 	return str;
 }
 //-----------------------------------------------------------------------
@@ -147,5 +147,7 @@ const char* GetString4()
 const char* GetString5()
 {
 	char* str = new char[strlen("time")+1];
+	//strcpy_s(str,&"time");
+	strcpy_s(str, 5, "time");
 	return str;
 }

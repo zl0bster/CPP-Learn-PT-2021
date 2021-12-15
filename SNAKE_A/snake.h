@@ -15,5 +15,4 @@ enum Directions
 void init_snake();
 bool is_snake_here(Coord& pos);
 void do_life_step(Directions snakeDir);
-
 void do_life_step1(Directions newDir);
