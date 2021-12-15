@@ -121,7 +121,7 @@ bool is_snake_here(Coord& pos)
 	return false;
 }
 
-void do_life_step(Directions newDir = NOP)
+void do_life_step(Directions newDir = NOP)	//game over added food added
 {
 	using std::cout;
 
@@ -138,6 +138,22 @@ void do_life_step(Directions newDir = NOP)
 		game_over();
 	put_snake_to_field(&snakePos[0], snakeSize);
 	print_food();
+	draw_screen();
+	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
+	Sleep(moveDelay);
+}
+
+void do_life_step1(Directions newDir = NOP)	//game over added but no food 
+{
+	using std::cout;
+
+	clear_screen();
+	change_snake_dir(newDir);
+	move_snake(&snakePos[0], snakeSize, snakeDir);
+	Coord head = snakePos[0];
+	if (is_snake_here(head))
+		game_over();
+	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
 	cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
 	Sleep(moveDelay);
