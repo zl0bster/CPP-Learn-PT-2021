@@ -3,7 +3,7 @@
 #define _INPUTS_SET
 
 #endif // 
-#define ESC 27
+#define ESC_KEY 27
 
 enum Actions
 {

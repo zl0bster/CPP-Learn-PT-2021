@@ -18,8 +18,12 @@ static KeyMapItem keyMap[]
 	{'D', KEY_RT},
 	{'W', KEY_UP},
 	{'S', KEY_DN},
+	{'Ô', KEY_LT},
+	{'Â', KEY_RT},
+	{'Ö', KEY_UP},
+	{'Û', KEY_DN},
 	{'0', EXIT},
-	{ESC, EXIT},
+	{ESC_KEY, EXIT},
 	{'1', OP1},
 	{'2', OP2},
 	{'3', OP3}
