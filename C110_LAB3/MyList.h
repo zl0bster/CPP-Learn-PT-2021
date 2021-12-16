@@ -17,3 +17,5 @@ size_t get_qty();
 int read_by_number(size_t num);
 void print_list();
 void clear_list();
+bool save_list(const char* fileName);
+bool load_list(const char* fileName);

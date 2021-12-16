@@ -132,3 +132,33 @@ void clear_list()
 	for (size_t i = qty; i > 0; i--)
 		pop();
 }
+bool save_list(const char* fileName)
+{
+	FILE* fout = fopen(fileName, "w");
+	if (!fout)
+		return false;
+	ListRec* current = start;
+	for (size_t i = 0; i < qty; i++)
+	{
+		fprintf(fout, "%d", current->val);
+		current = current->next;
+	}
+	fclose(fout);
+	return true;
+}
+
+bool load_list(const char* fileName)
+{
+	FILE* fin = fopen(fileName, "r");
+	if (!fin)
+		return false;
+	ListRec* current = start;
+	int tmp;
+	while (true)
+	{
+		if (fscanf(fin, "%d", tmp) == EOF) break;
+		push(tmp);
+	}
+	fclose(fin);
+	return true;
+}

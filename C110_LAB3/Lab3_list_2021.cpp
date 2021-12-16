@@ -102,9 +102,11 @@ void main()
 	////освобождение динамической памяти
 	{
 		using std::cout;
+		const char* fileName = "list1.txt";
 		for (int i = 22; i > 0; i--)
 			push(i);
 		print_list();
+		save_list(fileName);
 		for (int i = 5; i > 0; i--)
 			cout << pop() << ", ";
 		for (int i = 5; i > 0; i--)
@@ -117,6 +119,8 @@ void main()
 			cout << i+10<<' '<< remove_by_val(i+10) << ", ";
 		print_list();
 		clear_list();
+		print_list();
+		load_list(fileName);
 		print_list();
 		stop
 	}
