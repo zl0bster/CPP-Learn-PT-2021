@@ -119,8 +119,8 @@ int CmpInt(void* p1, void* p2)
 	int nResult =0;
 	float* ptr1 = reinterpret_cast<float*>(p1);
 	float* ptr2 = reinterpret_cast<float*>(p2);
-	bool isEqual = ((abs((*ptr1 + *ptr2) / 2.0) / abs(*ptr1 - *ptr2)) < 1000);
-	if (~isEqual)
+	//bool isEqual = ((abs((*ptr1 + *ptr2) / 2.0) / abs(*ptr1 - *ptr2)) < 1000);
+	if (*ptr1 != *ptr2)
 		nResult = (*ptr1 < *ptr2) ? -1 : 1;
 	return nResult;
 }
@@ -157,9 +157,9 @@ void SwapStr(void* p1, void* p2)
 int CmpStr(void* p1, void* p2)
 {
 	int nResult = 0; 
-	char** ptr1 = reinterpret_cast<char**>(p1);
-	char** ptr2 = reinterpret_cast<char**>(p2);
-	int cmpResult = strcmp(*ptr1, *ptr2);
+	char* ptr1 = *reinterpret_cast<char**>(p1);
+	char* ptr2 = *reinterpret_cast<char**>(p2);
+	int cmpResult = strcmp(ptr1, ptr2);
 	if (cmpResult != 0)
 		nResult = (cmpResult < 0) ? -1 : 1;
 	//std::cout << *ptr1 << '\t' << *ptr2 << ' ' << cmpResult << ' ' << nResult << '\n';
