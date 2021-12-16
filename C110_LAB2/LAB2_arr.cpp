@@ -1,80 +1,88 @@
 #include <iostream>
 #include <cstdlib>
+#include "LAB2_arr.h"
 
-static size_t arrSize = 0;
-static size_t membersN = 0;
-static int* arrPtr = nullptr;
-static size_t incStep = 8;
-
-void init_arr()
+void init_arr(ArrData* arr)
 {
-	arrPtr = new int[incStep];
-	arrSize = incStep;
+	arr->arrPtr = new int[arr->incStep];
+	arr->arrSize = arr->incStep;
 }
 
-void close_arr()
+ArrData* new_arr()
 {
-	delete[] arrPtr;
-	arrPtr = nullptr;
-	arrSize = -1;
-	membersN = -1;
+	ArrData* newArrStruct = new ArrData;
+	newArrStruct->arrSize = 0;
+	newArrStruct->membersN = 0;
+	newArrStruct->incStep = 8;
+	newArrStruct->arrPtr = nullptr;
+	init_arr(newArrStruct);
+	return newArrStruct;
 }
 
-size_t get_size()
+void close_arr(ArrData* arr)
 {
-	return membersN;
+	delete[] arr->arrPtr;
+	arr->arrPtr = nullptr;
+	arr->arrSize = -1;
+	arr->membersN = -1;
+	delete arr;
 }
 
-int get_item(size_t pos)
+size_t get_size(ArrData* arr)
 {
-	return (pos<membersN) ? arrPtr[pos]: -1;
+	return arr->membersN;
 }
 
-static void add_arr_item(int val)
+int get_item(ArrData* arr, size_t pos)
 {
-	arrPtr[membersN] = val;
-	membersN++;
+	return (pos< arr->membersN) ? arr->arrPtr[pos]: -1;
 }
 
-static void increase_arr_size()
+static void add_arr_item(ArrData* arr,int val)
 {
-	arrSize += incStep;
-	int* newArrPtr = new int[arrSize];
-	for (size_t i = 0; i < membersN; i++)
-		newArrPtr[i] = arrPtr[i];
-	delete[] arrPtr;
-	arrPtr = newArrPtr;
+	arr->arrPtr[arr->membersN] = val;
+	arr->membersN++;
 }
 
-bool is_val_present(int val)
+static void increase_arr_size(ArrData* arr)
 {
-	for (size_t i = 0; i < membersN; i++)
-		if (arrPtr[i] == val) return true;
+	arr->arrSize += arr->incStep;
+	int* newArrPtr = new int[arr->arrSize];
+	for (size_t i = 0; i < arr->membersN; i++)
+		newArrPtr[i] = arr->arrPtr[i];
+	delete[] arr->arrPtr;
+	arr->arrPtr = newArrPtr;
+}
+
+bool is_val_present(ArrData* arr, int val)
+{
+	for (size_t i = 0; i < arr->membersN; i++)
+		if (arr->arrPtr[i] == val) return true;
 	return false;
 }
 
-size_t get_metrics()
+size_t get_metrics(ArrData* arr)
 {
-	return arrSize;
+	return arr->arrSize;
 }
 
-void print_metrics()
+void print_metrics(ArrData* arr)
 {
-	std::cout << '\n' << "n= " << membersN << "\t size= " << arrSize << '\n';
+	std::cout << '\n' << "n= " << arr->membersN << "\t size= " << arr->arrSize << '\n';
 }
 
-bool add_item(int val)
+bool add_item(ArrData* arr, int val)
 // returns:
 // true if val added
 // false if val present yet
 {
-	if (membersN == 0)
+	if (arr->membersN == 0)
 	{
-		add_arr_item(val);
+		add_arr_item(arr, val);
 		return true;
 	}
-	if (is_val_present(val)) return false;
-	if (membersN == (arrSize-1)) increase_arr_size();
-	add_arr_item(val);
+	if (is_val_present(arr, val)) return false;
+	if (arr->membersN == (arr->arrSize-1)) increase_arr_size(arr);
+	add_arr_item(arr, val);
 	return true;
 }
