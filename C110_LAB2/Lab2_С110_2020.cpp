@@ -263,17 +263,22 @@ int _tmain()
 		int maxVal = 256;
 		size_t nTries = 80;
 		cout << '\n' << "+++++++++++++++++++++++" << '\n';
-		init_arr();
-		print_metrics();
+		ArrData* arr = new_arr();
+		ArrData* arr1 = new_arr();
+		print_metrics(arr);
 		for (size_t i= 0; i < nTries; i++)
 		{
-			add_item(rand() % maxVal);
-			if (i % 10 == 0) print_metrics();
+			add_item(arr, rand() % maxVal);
+			add_item(arr1, rand() % maxVal);
+			if (i % 10 == 0) print_metrics(arr);
+			if (i % 10 == 0) print_metrics(arr1);
 		}
-		for (size_t i = 0; i < get_size(); i++)
-			cout << get_item(i) << ", ";
-		close_arr();
+		for (size_t i = 0; i < get_size(arr); i++)
+			cout << get_item(arr, i) << ", ";
+		close_arr(arr);
+		close_arr(arr1);
 	}
+	
 
 	return 0;
 }//main
