@@ -41,7 +41,7 @@ ActMapItem actMap[]
 	{'%', do_res},
 };
 
-int calculate1a(char op, int x, int y)
+int calculate(char op, int x, int y)
 {
 	int actMapSize = sizeof(actMap) / sizeof(actMap[0]);
 	int result = 0;
@@ -57,7 +57,7 @@ int calculate1a(char op, int x, int y)
 	}
 	return result;
 }
-int calculate(char op, int x, int y)
+int calculate1(char op, int x, int y)
 {
 	int (*f)(int, int) = nullptr;
 	int result = 0;
