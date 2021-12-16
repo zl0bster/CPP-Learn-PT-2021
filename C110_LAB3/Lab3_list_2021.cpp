@@ -37,10 +37,8 @@ void main()
 	//3.1. Создать односвязный список 
 	//	(предпочтительный вариант с использованием структуры List),
 	//содержащий  узлы с данными целого типа.
-
 	//3.2. Разработать следующие функции:
 	//1) Добавление данных в список (в начало)
-
 	//2) Удаление из списка одного элемента с заданным значением
 	// (первого, который встретился)
 	//   Функция должна возвращать признак, выполнено ли удаление.
@@ -49,19 +47,15 @@ void main()
 	//   Функция должна возвращать количество удаленных элементов
 	//
 	//4) Печать списка, начиная с "головы" 
-	//   (порядок следования элементов будет обратным порядку заполнения). 
-
+	//   (порядок следования элементов будет обратным порядку заполнения).
 	//5) Печать списка, начиная с конца (рекурсивная функция). 
 	//   (порядок следования элементов будет соответствовать порядку, 
 	//	в котором заполнялся список.
 	//   Подсказка: сигнатура функции может быть следующей:
 		// void printList_rec(const MyList& list, Node * node); 
 		//, где node- указатель на узел, с которого просматривается список
-
 	//6) Запись текущего содержимого списка в файл 
-
 	//7) Чтение из файла содержимого в новый пустой список.
-
 		//Подсказка 1: для файлового ввода/вывода используйте функции fprintf и fscanf
 		//			  (заголовочный файл <cstdio>
 		// Подсказка 2: удобно в качестве первого данного в файле хранить количество
@@ -75,50 +69,55 @@ void main()
 		//в) считываем данные из файла и по мере чтения записываем  их в новый список.
 		// Обратите внимание, в каком порядке будут расположены элементы в новом списке
 		//}
-
 		//8) Не забудьте освободить динамическую память.
-
-
-		MyList list;
 	// присваивание начальных значений полям структуры 
-	...
-
-	addToHead(10, list);
-	addToHead(10, list);
-	addToHead(20, list);
-	addToHead(10, list);
-	addToHead(50, list);
-	addToHead(10, list);
-	addToHead(50, list);
-	addToHead(70, list);
-	addToHead(30, list);
-
-	printList(list);
-
-	printList_rec(list, list.pHead);
-
-	FILE* fout = fopen("list.txt", "w");
-	if (fout)
+	//...
+	//	MyList list;
+	//addToHead(10, list);
+	//addToHead(10, list);
+	//addToHead(20, list);
+	//addToHead(10, list);
+	//addToHead(50, list);
+	//addToHead(10, list);
+	//addToHead(50, list);
+	//addToHead(70, list);
+	//addToHead(30, list);
+	//printList(list);
+	//printList_rec(list, list.pHead);
+	//FILE* fout = fopen("list.txt", "w");
+	//if (fout)
+	//{
+	//	fprintf(fout, "%d", list.)
+	//}
+	//removeOne(30, list);
+	//printList(list);
+	//removeOne(50, list);
+	//printList(list);
+	//addToHead(10, list);
+	//addToHead(10, list);
+	//addToHead(10, list);
+	//removeAll(10, list);
+	//printList(list);
+	//printList_rec(list, list.pHead);
+	////освобождение динамической памяти
 	{
-		fprintf(fout, "%d", list.)
+		using std::cout;
+		for (int i = 22; i > 0; i--)
+			push(i);
+		print_list();
+		for (int i = 5; i > 0; i--)
+			cout << pop() << ", ";
+		for (int i = 5; i > 0; i--)
+			cout << pop_start() << ", ";
+		print_list();
+		for (int i = 8; i > 0; i--)
+			push_start(i);
+		print_list();
+		for (int i = 5; i > 0; i--)
+			cout << i+10<<' '<< remove_by_val(i+10) << ", ";
+		print_list();
+		clear_list();
+		print_list();
+		stop
 	}
-
-	removeOne(30, list);
-	printList(list);
-
-	removeOne(50, list);
-	printList(list);
-
-	addToHead(10, list);
-	addToHead(10, list);
-	addToHead(10, list);
-
-	removeAll(10, list);
-	printList(list);
-
-	printList_rec(list, list.pHead);
-
-	//освобождение динамической памяти
-
-	stop
 }
