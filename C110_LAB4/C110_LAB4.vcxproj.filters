@@ -18,5 +18,19 @@
     <ClCompile Include="Lab4_C110_2021_utf8.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LAB4_arr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="books.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="library.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LAB4_arr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

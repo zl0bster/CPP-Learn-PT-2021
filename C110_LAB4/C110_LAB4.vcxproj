@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="LAB4_arr.cpp" />
     <ClCompile Include="Lab4_C110_2021_utf8.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="books.h" />
+    <ClInclude Include="LAB4_arr.h" />
+    <ClInclude Include="library.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
