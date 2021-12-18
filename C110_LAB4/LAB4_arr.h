@@ -9,13 +9,14 @@ struct ArrItem {
 struct ArrData {
 	size_t arrSize;
 	size_t membersQty;
-	ArrItem* arrPtr = nullptr;
+	ArrItem* basePtr = nullptr;
 	size_t incStep;
 	size_t nextId;
 };
 
 ArrData* new_arr();
 void close_arr(ArrData* arr);
+size_t get_quantity(ArrData* arr);
 size_t get_size(ArrData* arr);
 Book* get_item(ArrData* arr, size_t pos);
 bool is_val_present(ArrData* arr, int val);

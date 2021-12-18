@@ -4,7 +4,7 @@
 
 void init_arr(ArrData* arr)
 {
-	arr->arrPtr = new ArrItem[arr->incStep];
+	arr->basePtr = new ArrItem[arr->incStep];
 	arr->arrSize = arr->incStep;
 }
 
@@ -14,35 +14,38 @@ ArrData* new_arr()
 	newArrStruct->arrSize = 0;
 	newArrStruct->membersQty = 0;
 	newArrStruct->incStep = 8;
-	newArrStruct->arrPtr = nullptr;
-	newArrStruct->nextId = 0;
+	newArrStruct->basePtr = nullptr;
+	newArrStruct->nextId = 1;
 	init_arr(newArrStruct);
 	return newArrStruct;
 }
 
 void close_arr(ArrData* arr)
 {
-	delete[] arr->arrPtr;
-	arr->arrPtr = nullptr;
+	delete[] arr->basePtr;
+	arr->basePtr = nullptr;
 	arr->arrSize = -1;
 	arr->membersQty = -1;
 	delete arr;
 }
 
-size_t get_size(ArrData* arr)
+size_t get_quantity(ArrData* arr)
 {
 	return arr->membersQty;
 }
 
 Book* get_item(ArrData* arr, size_t pos)
 {
-	return (pos< arr->membersQty) ? arr->arrPtr[pos]->ptr: nullptr;
+	if (pos < arr->membersQty) return nullptr;
+	ArrItem record =  arr->basePtr[pos];
+	return record.ptr;
 }
 
 static void add_arr_item(ArrData* arr, Book* bk)
 {
-	arr->arrPtr[arr->membersQty]->ptr = bk;
-	arr->arrPtr[arr->membersQty]->id = arr->nextId;
+	ArrItem record = arr->basePtr[arr->membersQty];
+	record.ptr = bk;
+	record.id = arr->nextId;
 	arr->membersQty++;
 	arr->nextId++;
 }
@@ -53,17 +56,17 @@ static void increase_arr_size(ArrData* arr)
 	ArrItem* newArrPtr = new ArrItem[arr->arrSize];
 	for (size_t i = 0; i < arr->membersQty; i++)
 	{
-		newArrPtr[i]->id = arr->arrPtr[i]->id;
-		newArrPtr[i]->ptr = arr->arrPtr[i]->ptr;
+		newArrPtr[i].id = arr->basePtr[i].id;
+		newArrPtr[i].ptr = arr->basePtr[i].ptr;
 	}
-	delete[] arr->arrPtr;
-	arr->arrPtr = newArrPtr;
+	delete[] arr->basePtr;
+	arr->basePtr = newArrPtr;
 }
 
 bool is_val_present(ArrData* arr, int val)
 {
 	for (size_t i = 0; i < arr->membersQty; i++)
-		if (arr->arrPtr[i]->id == val) return true;
+		if (arr->basePtr[i].id == val) return true;
 	return false;
 }
 

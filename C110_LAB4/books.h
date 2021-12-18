@@ -6,7 +6,8 @@ enum BookType {
 	POE,
 	STU,
 	HUM,
-	BIO
+	BIO,
+	NOPB
 };
 
 struct BookTypeList {
@@ -20,7 +21,8 @@ const BookTypeList typeList[] =
 	{POE, "Poetry"},
 	{STU, "Studybook"},
 	{HUM, "Humor"},
-	{BIO, "Biology"}
+	{BIO, "Biology"},
+	{NOPB, "Undefined"}
 };
 
 
@@ -28,7 +30,7 @@ struct Book {
 	char author[attrSize];
 	char bookName[attrSize];
 	short yr;
-	char tag[attrSize];
+	BookType tag;
 };
 
 enum BookAttrs {
