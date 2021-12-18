@@ -17,9 +17,8 @@ struct ArrData {
 ArrData* new_arr();
 void close_arr(ArrData* arr);
 size_t get_quantity(ArrData* arr);
-size_t get_size(ArrData* arr);
 Book* get_item(ArrData* arr, size_t pos);
 bool is_val_present(ArrData* arr, int val);
 size_t get_size(ArrData* arr);
 void print_metrics(ArrData* arr);
-bool add_item(ArrData* arr, int val);
+bool add_item(ArrData* arr, Book* ptr);

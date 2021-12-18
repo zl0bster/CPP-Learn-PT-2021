@@ -142,6 +142,7 @@
     <ClCompile Include="books.cpp" />
     <ClCompile Include="LAB4_arr.cpp" />
     <ClCompile Include="Lab4_C110_2021_utf8.cpp" />
+    <ClCompile Include="library.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="books.h" />

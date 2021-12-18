@@ -8,8 +8,9 @@ typedef BookLink* BookList;
 
 struct LibRoot {
 	char id[idSize];
-	size_t bksQty;
-	BookList bkList;
+	ArrData* libPtr;
+	//size_t bksQty;
+	//BookList bkList;
 };
 
 LibRoot* new_lib();
