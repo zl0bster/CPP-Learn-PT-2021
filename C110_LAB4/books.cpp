@@ -1,10 +1,13 @@
 #include <cstdlib>
 #include <iostream>
+#include <string.h>
 
 #include "..\C110_LAB1\Lab1_stuff.h"
 
 #include "LAB4_arr.h"
 #include "books.h"
+
+#define _CRT_SECURE_NO_WARNINGS
 
 Book* new_book()
 {
@@ -14,8 +17,12 @@ Book* new_book()
 
 void fill_book_rnd(Book* bk)
 {
-	get_rnd_str1(bk->author, attrSize);
-	get_rnd_str1(bk->bookName, attrSize);
+	char name[attrSize];
+	get_rnd_str1(name, attrSize);
+	name = get_rnd_str(attrSize);
+	strcpy_s(bk->author, name);
+	get_rnd_str1(name, attrSize);
+	strcpy_s(bk->bookName, name);
 	bk->yr = static_cast<short> (rand() % 120 + 1900);
 	bk->tag = static_cast<BookType>(rand() % (NOPB)-1);
 }
