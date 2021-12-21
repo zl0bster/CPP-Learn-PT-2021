@@ -127,7 +127,7 @@ void description()
 
 }
 
-void main()
+int main()
 {
 	Book* bk;
 	LibRoot* lib = new_lib();
@@ -136,5 +136,8 @@ void main()
 		bk = new_book();
 		fill_book_rnd(bk);
 		print_book(bk);
+		add_book(lib, bk);
 	}
+	return 0;
+	print_lib(lib);
 }

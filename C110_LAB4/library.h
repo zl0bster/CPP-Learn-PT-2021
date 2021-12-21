@@ -6,7 +6,7 @@ const size_t idSize = 20;
 typedef char* BookLink;
 typedef BookLink* BookList;
 
-struct LibRoot {
+typedef struct LibRoot {
 	char id[idSize];
 	ArrData* libPtr;
 	//size_t bksQty;
