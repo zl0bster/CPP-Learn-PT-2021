@@ -18,17 +18,10 @@ struct Book* new_book()
 
 void fill_book_rnd(struct Book* bk)
 {
-	/*char name[attrSize];
-	get_rnd_str1(name, attrSize);
-	name = get_rnd_str(attrSize);
-	strcpy_s(bk->author, name);
-	get_rnd_str1(name, attrSize);
-	strcpy_s(bk->bookName, name);*/
-
 	get_rnd_str1(bk->author, 4+rand()%(attrSize-4));
-	get_rnd_str1(bk->bookName, attrSize);
+	get_rnd_str1(bk->bookName, 4 + rand() % (attrSize - 4));
 	bk->yr = static_cast<short> (rand() % 120 + 1900);
-	bk->tag = static_cast<BookType>(rand() % (NOPB)-1);
+	bk->tag = static_cast<BookType>(rand() % (NOPB));
 }
 
 static char* get_book_type(enum BookType bkt)
@@ -38,13 +31,16 @@ static char* get_book_type(enum BookType bkt)
 	for (size_t i = 0; i < NOPB; i++)
 	{
 		if (typeList[i].type == bkt)
-			char* typ = const_cast<char*> (typeList[i].descript);
-		break;
+		{
+			//std::cout << typeList[i].type << ', ';
+			typ = const_cast<char*> (typeList[i].descript);
+			break;
+		}
 	}
 	return typ;
 }
 void print_book(struct Book* bk)
 {
-
-	std::cout << bk->author << '\t' << bk->bookName << '\t' << bk->yr << '\t' << get_book_type(bk->tag)<<'\n';
+	//std::cout << bk->yr << '\t' << bk->tag << '\t' << bk->author << '\t' << bk->bookName << '\n';
+	std::cout << bk->yr << '\t' << get_book_type(bk->tag) << '\t' << bk->author << '\t' << bk->bookName << '\n';
 }

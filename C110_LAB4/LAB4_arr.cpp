@@ -41,13 +41,28 @@ Book* get_item(ArrData* arr, size_t pos)
 	return record.ptr;
 }
 
-static void add_arr_item(ArrData* arr, Book* bk)
+size_t get_item_id(ArrData* arr, size_t pos)
+{
+	if (pos < arr->membersQty) return -1;
+	ArrItem record = arr->basePtr[pos];
+	return record.id;
+}
+
+Book* get_item_by_id(ArrData* arr, size_t id)
+{
+	for (size_t i = 0; i < arr->membersQty; i++)
+		if (arr->basePtr[i].id == id) return arr->basePtr[i].ptr;
+	return nullptr;
+}
+
+static size_t add_arr_item(ArrData* arr, Book* bk)
 {
 	ArrItem record = arr->basePtr[arr->membersQty];
 	record.ptr = bk;
 	record.id = arr->nextId;
 	arr->membersQty++;
 	arr->nextId++;
+	return record.id;
 }
 
 static void increase_arr_size(ArrData* arr)
@@ -80,12 +95,11 @@ void print_metrics(ArrData* arr)
 	std::cout << '\n' << "n= " << arr->membersQty << "\t size= " << arr->arrSize << '\n';
 }
 
-bool add_item(ArrData* arr, Book*ptr)
+size_t add_item(ArrData* arr, Book*ptr)
 // returns:
 // true if val added
 // false if val present yet
 {
 	if (arr->membersQty == (arr->arrSize-1)) increase_arr_size(arr);
-	add_arr_item(arr, ptr);
-	return true;
+	return add_arr_item(arr, ptr);
 }

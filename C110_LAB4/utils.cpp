@@ -11,7 +11,7 @@ void get_rnd_str1(char* newStr, size_t maxLen)
 	size_t set1Len = strlen(charSet1);
 	//static char* newStr = new char[maxLen];
 #if _DEBUG
-	cout << maxLen << '\t' << genSetLen << '\t' << set1Len << '\n';
+	//cout << maxLen << '\t' << genSetLen << '\t' << set1Len << '\n';
 #endif
 	unsigned int i = 0;
 	while (i < maxLen)
@@ -24,7 +24,7 @@ void get_rnd_str1(char* newStr, size_t maxLen)
 	}
 	newStr[maxLen - 1] = '\0';
 #if _DEBUG
-	cout << newStr << '\n';
+	//cout << newStr << '\n';
 #endif
 
 }
