@@ -103,3 +103,16 @@ size_t add_item(ArrData* arr, Book*ptr)
 	if (arr->membersQty == (arr->arrSize-1)) increase_arr_size(arr);
 	return add_arr_item(arr, ptr);
 }
+
+void swap_items(ArrData* arr, size_t pos1, size_t pos2)
+{
+	size_t limit = arr->membersQty;
+	if (pos1 > limit || pos2 > limit) return;
+	ArrItem tmp;
+	tmp.id = arr->basePtr[pos1].id;
+	tmp.ptr = arr->basePtr[pos1].ptr;
+	arr->basePtr[pos1].id=arr->basePtr[pos2].id;
+	arr->basePtr[pos1].ptr=arr->basePtr[pos2].ptr;
+	arr->basePtr[pos2].id=tmp.id;
+	arr->basePtr[pos2].ptr=tmp.ptr;
+}
