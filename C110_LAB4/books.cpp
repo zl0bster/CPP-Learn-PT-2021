@@ -51,11 +51,12 @@ void set_book_data(Book* bk, char* bkData)
 
 }
 
-void get_book_data_from_file(Book* bk, FILE* fl)
+bool get_book_data_from_file(Book* bk, FILE* fl)
 {
-	fprintf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
+	if (fscanf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName)==EOF) return true; // true means EOF
+	return false;
 }
 void put_book_data_to_file(Book* bk, FILE* fl)
 {
-	fscanf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
+	fprintf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
 }

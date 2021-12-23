@@ -24,7 +24,7 @@ size_t add_book1(LibRoot* lib, Book* bk)
 void print_lib(LibRoot* lib)
 {
 	using std::cout;
-	cout << '\n' << lib->id << '\n';
+	//cout << '\n' << lib->id << '\n';
 	for (size_t i = 0; i < get_quantity(lib->libPtr); i++)
 	{
 		std::cout << i << '\t' << get_item_id(lib->libPtr, i) << '\t';
@@ -55,4 +55,23 @@ bool save_lib(LibRoot* lib, const char* fileName)
 	return true;
 }
 
-bool load_lib(LibRoot* lib, const char* fileName);
+bool load_lib(LibRoot* lib, const char* fileName)
+{
+	FILE* fp = fopen(fileName, "r");
+	if (!fp)
+	{
+		printf("Cannot open directory file.");
+		exit(1);
+	}
+	std::cout << "Start loading lib.";
+	Book* tmp = new Book;
+	while (true)
+	{
+		if (get_book_data_from_file(tmp, fp)) break;
+		add_book(lib,tmp);
+	}
+	delete tmp;
+	fclose(fp);
+	std::cout << "Finish loading lib.";
+	return true;
+}

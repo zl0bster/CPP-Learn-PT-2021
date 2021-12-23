@@ -36,15 +36,15 @@ size_t get_quantity(ArrData* arr)
 
 Book* get_item(ArrData* arr, size_t pos)
 {
-	if (pos < arr->membersQty) return nullptr;
+	if (pos > arr->membersQty) return nullptr;
 	ArrItem record =  arr->basePtr[pos];
 	return record.ptr;
 }
 
 size_t get_item_id(ArrData* arr, size_t pos)
 {
-	if (pos < arr->membersQty) return -1;
-	ArrItem record = arr->basePtr[pos];
+	if (pos > arr->membersQty) return -1;
+	ArrItem record = arr->basePtr[pos+1];
 	return record.id;
 }
 
@@ -57,12 +57,12 @@ Book* get_item_by_id(ArrData* arr, size_t id)
 
 static size_t add_arr_item(ArrData* arr, Book* bk)
 {
-	ArrItem record = arr->basePtr[arr->membersQty];
-	record.ptr = bk;
-	record.id = arr->nextId;
+	ArrItem *record = &arr->basePtr[arr->membersQty];
+	record->ptr = bk;
+	record->id = arr->nextId;
 	arr->membersQty++;
 	arr->nextId++;
-	return record.id;
+	return record->id;
 }
 
 static void increase_arr_size(ArrData* arr)

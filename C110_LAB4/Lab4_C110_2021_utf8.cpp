@@ -132,16 +132,18 @@ int main()
 	Book* bk;
 	const char fileName[] = { "lib1.txt" };
 	LibRoot* lib = new_lib();
-	for (int i = 0; i < 22; i++)
+	for (int i = 0; i < 12; i++)
 	{
 		bk = new_book();
 		fill_book_rnd(bk);
 		print_book(bk);
-		add_book(lib, bk);
+		add_book1(lib, bk);
 	}
-	return 0;
+	
 	print_lib(lib);
 	save_lib(lib, fileName);
-	if (save_lib(lib, "lib2.txt"))
-		std::cout << "Save_lib returned true";
+	LibRoot* lib1 = new_lib();
+	load_lib(lib1, fileName);
+	print_lib(lib1);
+	return 0;
 }
