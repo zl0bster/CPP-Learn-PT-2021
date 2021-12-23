@@ -2,13 +2,22 @@
 #include <iostream>
 #include <string.h>
 
-//#include "..\C110_LAB1\Lab1_stuff.h"
-
 #include "LAB4_arr.h"
 #include "books.h"
 #include "utils.h"
 
 #define _CRT_SECURE_NO_WARNINGS
+
+const BookTypeList typeList[] =
+{
+	{SCI, "Science"},
+	{POE, "Poetry"},
+	{STU, "Studybook"},
+	{HUM, "Humor"},
+	{BIO, "Biology"},
+	{NOPB, "Undefined"}
+};
+
 
 struct Book* new_book()
 {
@@ -27,35 +36,40 @@ void fill_book_rnd(struct Book* bk)
 static char* get_book_type(enum BookType bkt)
 //static char* get_book_type(short bkt)
 {
+	//static const char* bookType[] = 
 	char* typ = const_cast<char*> (typeList[NOPB].descript);
 	for (size_t i = 0; i < NOPB; i++)
 	{
 		if (typeList[i].type == bkt)
 		{
-			//std::cout << typeList[i].type << ', ';
 			typ = const_cast<char*> (typeList[i].descript);
 			break;
 		}
 	}
 	return typ;
 }
+
 void print_book(struct Book* bk)
 {
 	//std::cout << bk->yr << '\t' << bk->tag << '\t' << bk->author << '\t' << bk->bookName << '\n';
 	std::cout << bk->yr << '\t' << get_book_type(bk->tag) << '\t' << bk->author << '\t' << bk->bookName << '\n';
 }
 
-void set_book_data(Book* bk, char* bkData)
-{
-	char* line = new char[80];
-
-}
-
 bool get_book_data_from_file(Book* bk, FILE* fl)
 {
-	if (fscanf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName)==EOF) return true; // true means EOF
+	int i = 0;
+	if (fscanf(fl, "%i", &i)==EOF) return true; // true means EOF
+	bk->yr = i;
+	if (fscanf(fl, "%i", &i)==EOF) return true; // true means EOF
+	bk->tag = static_cast<BookType>(i);
+	char tmp[80];
+	if (fscanf(fl, "%s", tmp)==EOF) return true; // true means EOF
+	strncpy(bk->author, tmp, attrSize);
+	if (fscanf(fl, "%s", tmp)==EOF) return true; // true means EOF
+	strncpy(bk->bookName, tmp, attrSize);
 	return false;
 }
+
 void put_book_data_to_file(Book* bk, FILE* fl)
 {
 	fprintf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
