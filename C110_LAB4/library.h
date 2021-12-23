@@ -13,6 +13,8 @@ typedef struct LibRoot {
 	//BookList bkList;
 };
 
+typedef int (*BookCmpFx)(const Book* bk1, const Book* bk2);
+
 LibRoot* new_lib();
 void add_book(LibRoot* lib, Book* bk);
 size_t add_book1(LibRoot* lib, Book* bk);
