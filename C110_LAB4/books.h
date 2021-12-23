@@ -1,4 +1,6 @@
 #pragma once
+#include <cstdlib>
+#include <iostream>
 const size_t attrSize = 20;
 
 enum BookType {
@@ -45,6 +47,8 @@ int compare_books(const Book* bk1, const Book* bk2, BookAttrs attr);
 void print_book(struct Book* bk);
 char* get_book_data(Book* bk);
 void set_book_data(Book* bk, char* bkData);
+void get_book_data_from_file(Book* bk, FILE * fl);
+void put_book_data_to_file(Book* bk, FILE* fl);
 void del_book(Book* bk);
 bool is_attr_eq(Book* bk, BookAttrs attr, ...);
 void fill_book_rnd(Book* bk);

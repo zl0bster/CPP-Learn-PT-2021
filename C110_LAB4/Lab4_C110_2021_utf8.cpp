@@ -130,6 +130,7 @@ void description()
 int main()
 {
 	Book* bk;
+	const char fileName[] = { "lib1.txt" };
 	LibRoot* lib = new_lib();
 	for (int i = 0; i < 22; i++)
 	{
@@ -140,4 +141,7 @@ int main()
 	}
 	return 0;
 	print_lib(lib);
+	save_lib(lib, fileName);
+	if (save_lib(lib, "lib2.txt"))
+		std::cout << "Save_lib returned true";
 }

@@ -6,7 +6,7 @@ void get_rnd_str1(char* newStr, size_t maxLen)
 {
 	using std::cout;
 	const char* genCharSet = "abcdefghijklmnopqrstuvwxyz";
-	const char* charSet1 = "aeiou ";
+	const char* charSet1 = "aeiou_";
 	size_t genSetLen = strlen(genCharSet);
 	size_t set1Len = strlen(charSet1);
 	//static char* newStr = new char[maxLen];

@@ -44,3 +44,18 @@ void print_book(struct Book* bk)
 	//std::cout << bk->yr << '\t' << bk->tag << '\t' << bk->author << '\t' << bk->bookName << '\n';
 	std::cout << bk->yr << '\t' << get_book_type(bk->tag) << '\t' << bk->author << '\t' << bk->bookName << '\n';
 }
+
+void set_book_data(Book* bk, char* bkData)
+{
+	char* line = new char[80];
+
+}
+
+void get_book_data_from_file(Book* bk, FILE* fl)
+{
+	fprintf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
+}
+void put_book_data_to_file(Book* bk, FILE* fl)
+{
+	fscanf(fl, "%i\t%i\t%s\t%s\n", bk->yr, bk->tag, bk->author, bk->bookName);
+}

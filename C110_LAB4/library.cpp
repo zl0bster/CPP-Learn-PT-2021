@@ -36,3 +36,23 @@ size_t get_book_qty(LibRoot* lib)
 {
 	return lib->libPtr->membersQty;
 }
+
+bool save_lib(LibRoot* lib, const char* fileName)
+{
+	FILE* fp = fopen(fileName, "w");
+	if (!fp)
+	{
+		printf("Cannot open directory file.");
+		exit(1);
+	}
+	std::cout << "Start saving lib.";
+	for (size_t i = 0; i < get_quantity(lib->libPtr); i++)
+	{
+		put_book_data_to_file(get_item(lib->libPtr, i), fp);
+	}
+	fclose(fp);
+	std::cout << "Finish saving lib.";
+	return true;
+}
+
+bool load_lib(LibRoot* lib, const char* fileName);
