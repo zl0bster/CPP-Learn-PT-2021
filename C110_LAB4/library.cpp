@@ -51,7 +51,7 @@ bool save_lib(LibRoot* lib, const char* fileName)
 		put_book_data_to_file(get_item(lib->libPtr, i), fp);
 	}
 	fclose(fp);
-	std::cout << "Finish saving lib.";
+	std::cout << "Finish saving lib.\n";
 	return true;
 }
 
@@ -64,14 +64,61 @@ bool load_lib(LibRoot* lib, const char* fileName)
 		exit(1);
 	}
 	std::cout << "Start loading lib.";
-	Book* tmp = new Book;
 	while (true)
 	{
+		Book* tmp = new_book();
 		if (get_book_data_from_file(tmp, fp)) break;
 		add_book(lib,tmp);
 	}
-	delete tmp;
 	fclose(fp);
-	std::cout << "Finish loading lib.";
+	std::cout << "Finish loading lib.\n";
 	return true;
+}
+
+
+static int cmp_bk_yr(const Book* bk1, const Book* bk2)
+{
+	if (bk1->yr == bk1->yr) return 0;
+	return (bk1->yr > bk1->yr) ? 1 : -1;
+}
+
+static int cmp_bk_tag(const Book* bk1, const Book* bk2)
+{
+	if (bk1->tag == bk1->tag) return 0;
+	return (bk1->tag > bk1->tag) ? 1 : -1;
+}
+
+static int cmp_bk_aut(const Book* bk1, const Book* bk2)
+{
+	return strcmp(bk1->author, bk2->author);
+}
+
+static int cmp_bk_nam(const Book* bk1, const Book* bk2)
+{
+	return strcmp(bk1->bookName, bk2->bookName);
+}
+
+static const struct cmpFxListItem {
+	BookAttrs att;
+	BookCmpFx fx;
+};
+
+cmpFxListItem bkCmpFxArr[] = {
+	{BKAUTHOR, cmp_bk_aut},
+	{BKNAME, cmp_bk_nam},
+	{BKYR, cmp_bk_yr},
+	{BKTAG, cmp_bk_tag}
+};
+
+void sort_lib(LibRoot* lib, BookAttrs attr)
+{
+	BookCmpFx fxPtr=nullptr;
+	for (size_t i = 0; i < BKTAG + 1; i++)
+	{
+		if (bkCmpFxArr[i].att == attr)
+		{
+			fxPtr = bkCmpFxArr[i].fx;
+			break;
+		}
+	}
 }
