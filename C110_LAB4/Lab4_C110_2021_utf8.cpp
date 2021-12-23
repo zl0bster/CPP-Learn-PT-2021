@@ -132,7 +132,7 @@ int main()
 	Book* bk;
 	const char fileName[] = { "lib1.txt" };
 	LibRoot* lib = new_lib();
-	for (int i = 0; i < 12; i++)
+	for (int i = 0; i < 17; i++)
 	{
 		bk = new_book();
 		fill_book_rnd(bk);
@@ -145,5 +145,18 @@ int main()
 	LibRoot* lib1 = new_lib();
 	load_lib(lib1, fileName);
 	print_lib(lib1);
+	std::cout << "=======================\n";
+	sort_lib(lib1, BKYR);
+	print_lib(lib1);
+	std::cout << "=======================\n";
+	sort_lib(lib1, BKTAG);
+	print_lib(lib1);
+	std::cout << "=======================\n";
+	sort_lib(lib1, BKAUTHOR);
+	print_lib(lib1);
+	std::cout << "=======================\n";
+	sort_lib(lib1, BKNAME);
+	print_lib(lib1);
+	std::cout << "=======================\n";
 	return 0;
 }

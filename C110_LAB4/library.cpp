@@ -27,7 +27,7 @@ void print_lib(LibRoot* lib)
 	//cout << '\n' << lib->id << '\n';
 	for (size_t i = 0; i < get_quantity(lib->libPtr); i++)
 	{
-		std::cout << i << '\t' << get_item_id(lib->libPtr, i) << '\t';
+		std::cout << i << '\t'/* << get_item_id(lib->libPtr, i) << '\t'*/;
 		print_book(get_item(lib->libPtr, i));
 	}
 }
@@ -78,14 +78,14 @@ bool load_lib(LibRoot* lib, const char* fileName)
 
 static int cmp_bk_yr(const Book* bk1, const Book* bk2)
 {
-	if (bk1->yr == bk1->yr) return 0;
-	return (bk1->yr > bk1->yr) ? 1 : -1;
+	if (bk1->yr == bk2->yr) return 0;
+	return (bk1->yr > bk2->yr) ? 1 : -1;
 }
 
 static int cmp_bk_tag(const Book* bk1, const Book* bk2)
 {
-	if (bk1->tag == bk1->tag) return 0;
-	return (bk1->tag > bk1->tag) ? 1 : -1;
+	if (bk1->tag == bk2->tag) return 0;
+	return (bk1->tag > bk2->tag) ? 1 : -1;
 }
 
 static int cmp_bk_aut(const Book* bk1, const Book* bk2)
@@ -113,7 +113,7 @@ cmpFxListItem bkCmpFxArr[] = {
 void sort_lib(LibRoot* lib, BookAttrs attr)
 {
 	BookCmpFx fxPtr=nullptr;
-	for (size_t i = 0; i < BKTAG + 1; i++)
+	for (size_t i = 0; i < (BKTAG + 1); i++)
 	{
 		if (bkCmpFxArr[i].att == attr)
 		{
@@ -121,4 +121,14 @@ void sort_lib(LibRoot* lib, BookAttrs attr)
 			break;
 		}
 	}
+	size_t nNumber = lib->libPtr->membersQty;
+	int i;
+	for (i = 1; i < nNumber; i++)
+		for (int j = nNumber - 1; j >= i; j--)
+		{
+			size_t pCurrent =  j;
+			size_t pPrevious = j - 1;
+			if ((*fxPtr)(get_item(lib->libPtr, pPrevious), get_item(lib->libPtr, pCurrent)) > 0)
+				swap_items(lib->libPtr, pPrevious, pCurrent);
+		}
 }
