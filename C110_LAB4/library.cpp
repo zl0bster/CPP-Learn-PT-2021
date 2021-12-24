@@ -132,3 +132,8 @@ void sort_lib(LibRoot* lib, BookAttrs attr)
 				swap_items(lib->libPtr, pPrevious, pCurrent);
 		}
 }
+
+void remove_book_by_pos(LibRoot* lib, size_t pos)
+{
+	remove_item_by_pos(lib->libPtr, pos);
+}

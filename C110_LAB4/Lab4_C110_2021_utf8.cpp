@@ -158,5 +158,10 @@ int main()
 	sort_lib(lib1, BKNAME);
 	print_lib(lib1);
 	std::cout << "=======================\n";
+	remove_book_by_pos(lib1, 1);
+	remove_book_by_pos(lib1, 1);
+	remove_book_by_pos(lib1, 1);
+	print_lib(lib1);
+	std::cout << "=======================\n";
 	return 0;
 }

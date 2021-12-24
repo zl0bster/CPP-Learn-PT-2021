@@ -116,3 +116,13 @@ void swap_items(ArrData* arr, size_t pos1, size_t pos2)
 	arr->basePtr[pos2].id=tmp.id;
 	arr->basePtr[pos2].ptr=tmp.ptr;
 }
+
+void remove_item_by_pos(ArrData* arr, size_t pos)
+{
+	if (pos > arr->membersQty) return;
+	size_t posToRemove = arr->membersQty - 1;
+	if (pos < posToRemove) swap_items(arr, pos, posToRemove);
+	delete arr->basePtr[posToRemove].ptr;
+	arr->basePtr[posToRemove].ptr = nullptr;
+	arr->membersQty--;
+}

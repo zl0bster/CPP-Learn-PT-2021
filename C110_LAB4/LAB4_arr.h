@@ -25,3 +25,4 @@ size_t get_size(ArrData* arr);
 void print_metrics(ArrData* arr);
 size_t add_item(ArrData* arr, Book* ptr);
 void swap_items(ArrData* arr, size_t pos1, size_t pos2);
+void remove_item_by_pos(ArrData* arr, size_t pos);

@@ -24,3 +24,4 @@ bool load_lib(LibRoot* lib, const char* fileName);
 void sort_lib(LibRoot* lib, BookAttrs attr);
 void print_lib(LibRoot* lib);
 size_t get_book_qty(LibRoot* lib);
+void remove_book_by_pos(LibRoot* lib, size_t pos);
