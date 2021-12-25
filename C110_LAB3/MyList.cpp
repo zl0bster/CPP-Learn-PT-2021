@@ -1,3 +1,5 @@
+#pragma warning(disable : 4996)
+
 #include <iostream>
 #include <cstdio>
 #include "MyList.h"
@@ -153,7 +155,7 @@ bool load_list(const char* fileName)
 	if (!fin)
 		return false;
 	ListRec* current = start;
-	int tmp;
+	int tmp=0;
 	while (true)
 	{
 		if (fscanf(fin, "%d", tmp) == EOF) break;

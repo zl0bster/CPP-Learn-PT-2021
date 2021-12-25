@@ -4,6 +4,8 @@
 	Использование структур для реализации односвязного списка
 
 *************************************************************/
+#pragma warning(disable : 4996)
+
 #include <iostream>
 #include <cstdio>
 #define stop __asm nop
