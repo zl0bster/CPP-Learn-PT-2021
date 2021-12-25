@@ -29,7 +29,7 @@ void push(int val)
 	newRec->val = val;
 	qty++;
 #ifdef _DEBUG
-	std::cout << newRec->val << '\t' << qty << '\n';
+	//std::cout << newRec->val << '\t' << qty << '\n';
 #endif // DEBUG
 
 	if (qty == 1)
@@ -140,12 +140,14 @@ bool save_list(const char* fileName)
 	if (!fout)
 		return false;
 	ListRec* current = start;
+	std::cout << "List saving started.";
 	for (size_t i = 0; i < qty; i++)
 	{
-		fprintf(fout, "%d", current->val);
+		fprintf(fout, "%d ", current->val);
 		current = current->next;
 	}
 	fclose(fout);
+	std::cout << " List saving finished.\n";
 	return true;
 }
 
@@ -155,12 +157,14 @@ bool load_list(const char* fileName)
 	if (!fin)
 		return false;
 	ListRec* current = start;
+	std::cout << "List loading started.";
 	int tmp=0;
 	while (true)
 	{
-		if (fscanf(fin, "%d", tmp) == EOF) break;
+		if (fscanf(fin, "%d", &tmp) == EOF) break;
 		push(tmp);
 	}
 	fclose(fin);
+	std::cout << " List loading finished.\n";
 	return true;
 }
