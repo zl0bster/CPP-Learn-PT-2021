@@ -33,6 +33,8 @@ int read_input()
 {
 	int mapSize = sizeof(keyMap) / sizeof(keyMap[0]);
 	int ch;
+	char action = UNDEF;
+	if (!_kbhit()) return action;
 	ch = _getch();
 	ch = toupper(ch);
 
@@ -41,7 +43,6 @@ int read_input()
 	_putch('\r');    // Carriage return
 	_putch('\n');    // Line feed
 #endif
-	char action = UNDEF;
 	for (int i = 0; i < mapSize; i++)
 	{
 		if (ch == keyMap[i].key)

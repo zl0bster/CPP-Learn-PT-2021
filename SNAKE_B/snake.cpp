@@ -2,6 +2,7 @@
 #include "const.h"
 #include "screen.h"
 #include "food.h"
+#include "inputs.h"
 
 const size_t MAX_SIZE = 10;
 const size_t _DELAY = 100;
@@ -126,6 +127,8 @@ void do_life_step(Directions newDir = NOP)	//game over added food added
 	using std::cout;
 
 	clear_field();
+	char action = read_input();
+	if (action == EXIT) game_over();
 	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
 	Coord head = snakePos[0];
