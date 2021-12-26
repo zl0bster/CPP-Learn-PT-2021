@@ -7,6 +7,7 @@
 
 enum Actions
 {
+	NOPS,
 	KEY_UP,
 	KEY_DN,
 	KEY_RT,

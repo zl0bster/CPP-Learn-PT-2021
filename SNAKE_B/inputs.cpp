@@ -33,7 +33,7 @@ int read_input()
 {
 	int mapSize = sizeof(keyMap) / sizeof(keyMap[0]);
 	int ch;
-	char action = UNDEF;
+	char action = NOPS;
 	if (!_kbhit()) return action;
 	ch = _getch();
 	ch = toupper(ch);

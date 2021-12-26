@@ -4,7 +4,7 @@
 #include "food.h"
 #include "inputs.h"
 
-const size_t MAX_SIZE = 10;
+const size_t MAX_SIZE = 20;
 const size_t _DELAY = 100;
 
 namespace
@@ -76,7 +76,6 @@ void move_snake(Coord* sPos, size_t size, Directions direct)
 	for (int i = size; i > 0; i--)
 	{
 		sPos++;
-
 		//flip temp with coord
 		tmp = sPos->x;
 		sPos->x = temp.x;
@@ -87,7 +86,7 @@ void move_snake(Coord* sPos, size_t size, Directions direct)
 	}
 }
 
-void change_snake_dir(Directions newDir)
+Directions change_snake_dir(Directions newDir)
 {
 	// reverse movement is prohibited
 	// direct movement makes no need to change
@@ -111,7 +110,9 @@ void change_snake_dir(Directions newDir)
 			snakeDir = newDir;
 		break;
 	}
+	return snakeDir;
 }
+
 bool is_snake_here(Coord& pos)
 {
 	for (int i = 1; i < snakeSize; i++)
@@ -127,8 +128,6 @@ void do_life_step(Directions newDir = NOP)	//game over added food added
 	using std::cout;
 
 	clear_field();
-	char action = read_input();
-	if (action == EXIT) game_over();
 	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
 	Coord head = snakePos[0];
@@ -146,16 +145,21 @@ void do_life_step(Directions newDir = NOP)	//game over added food added
 	Sleep(moveDelay);
 }
 
-void do_life_step1(Directions newDir = NOP)	//game over added but no food 
+void do_life_step1()	//game over added but no food 
 {
 	using std::cout;
 
 	clear_field();
-	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
 	Coord head = snakePos[0];
+	if (is_food_here(head))
+	{
+		snakeSize++;
+		init_food();
+	};
 	if (is_snake_here(head))
 		game_over();
+	print_food();
 	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
 	//cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';

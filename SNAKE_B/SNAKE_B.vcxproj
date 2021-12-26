@@ -147,6 +147,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="GraphicsLib.h" />
     <ClInclude Include="inputs.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="snake.h" />
     <ClInclude Include="winconsole.h" />
