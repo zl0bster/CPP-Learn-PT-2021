@@ -9,9 +9,12 @@ const size_t _DELAY = 100;
 
 namespace
 {
-	Coord snakePos[MAX_SIZE];
+	//Coord snakePos[MAX_SIZE];
+	Coord* snakePos;
+	int snakeSizeMax;
 	size_t snakeSize = 5;
 	Directions snakeDir = MOVE_RT;
+	PrintSequenceItem* snakeFigure;
 }
 
 
@@ -19,6 +22,9 @@ void init_snake(int snakeLen)
 {
 	int refX = get_xResolution() / 2;
 	int refY = get_yResolution() / 2;
+	snakeSizeMax = get_xResolution() * get_yResolution();
+	snakePos = new Coord[snakeSizeMax];
+	snakeFigure = new PrintSequenceItem[snakeSizeMax];
 	snakeSize = snakeLen;
 	for (int i = 0; i < snakeSize; i++)
 	{
@@ -29,7 +35,6 @@ void init_snake(int snakeLen)
 
 void put_snake_to_field(Coord* sPos, size_t size)
 {
-	PrintSequenceItem snakeFigure[MAX_SIZE];
 	int symbol;
 	for (int i = 0; i < size; i++)
 	{
