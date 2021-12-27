@@ -8,9 +8,12 @@
 #include "inputs.h"
 #include "main.h"
 
+enum Game_Modes{DEMO_MODE=1, MANUAL_MODE};
+
 namespace
 {
 	Directions newDir = MOVE_RT;
+	int gameMode = DEMO_MODE;
 }
 
 static size_t prepare_game(int argQty, char* args[])
@@ -21,6 +24,11 @@ static size_t prepare_game(int argQty, char* args[])
 	size_t yRes = 8;
 
 	//check and set command line params
+	// Input args:
+	// 1. horizontal field size
+	// 2. vertical field size
+	// 3. starting snake length
+	// 4. game mode: 2 for manual control, others - for DEMO mode
 	if (argQty >= 2)
 		if (int x = atoi(args[1]))
 			if ((x > 0) && (x < 81))
@@ -33,6 +41,10 @@ static size_t prepare_game(int argQty, char* args[])
 		if (int n = atoi(args[3]))
 			if ((n > 1) && (n < (xRes / 2)))
 				snakeLen = n;
+	if (argQty >= 5)
+		if (int n = atoi(args[4]))
+			if (n == 2) 
+				gameMode = MANUAL_MODE;
 
 	init_screen(xRes, yRes);
 	return snakeLen;
@@ -47,7 +59,7 @@ static void play_demo_rnd()
 		Directions moveDir = static_cast <Directions> (rand() % NOP);
 		unsigned short moveLen = static_cast <unsigned short> (rand() % get_yResolution());
 		for (int i = moveLen; i > 0; i--)
-			do_life_step(moveDir);//food enabled
+			do_life_step(moveDir);
 	}
 }
 
@@ -58,8 +70,6 @@ void set_new_dir(Directions dir)
 
 static void play_game()
 {
-	//Directions moveDir = MOVE_RT;
-	
 	while (true)
 	{
 		react_inputs();
@@ -70,21 +80,9 @@ static void play_game()
 
 int main(int argQty, char* args[])
 {
-#ifdef _DEBUG
-	std::cout << argQty << "-----" << '\n';
-	for (int i = 0; i < argQty; i++)
-		std::cout << args[i] << '\t' << atoi(args[i]) << '\n';
-#endif // _DEBUG
-
 	size_t snakeLen = prepare_game(argQty, args);
-
-#ifdef _DEBUG
-	std::cout << get_xResolution() << get_yResolution() << '\n';
-#endif // _DEBUG
-
 	init_snake(snakeLen);
 	init_food();
-	//play_demo_rnd();
-	play_game();
+	(gameMode == MANUAL_MODE) ? play_game() : play_demo_rnd();
 	exit_game();
 }

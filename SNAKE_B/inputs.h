@@ -20,4 +20,3 @@ enum Actions
 };
 
 int read_input();
-

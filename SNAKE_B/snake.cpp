@@ -128,10 +128,8 @@ bool is_snake_here(Coord& pos)
 	return false;
 }
 
-void do_life_step(Directions newDir = NOP)	//game over added food added
+void do_life_step(Directions newDir = NOP)	//demo game mode
 {
-	using std::cout;
-
 	clear_field();
 	change_snake_dir(newDir);
 	move_snake(&snakePos[0], snakeSize, snakeDir);
@@ -146,14 +144,11 @@ void do_life_step(Directions newDir = NOP)	//game over added food added
 	put_snake_to_field(&snakePos[0], snakeSize);
 	print_food();
 	draw_screen();
-	//cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
 	Sleep(moveDelay);
 }
 
-void do_life_step1()	//game over added but no food 
+void do_life_step1()	//keyboard direction control
 {
-	using std::cout;
-
 	clear_field();
 	move_snake(&snakePos[0], snakeSize, snakeDir);
 	Coord head = snakePos[0];
@@ -161,12 +156,11 @@ void do_life_step1()	//game over added but no food
 	{
 		snakeSize++;
 		init_food();
-	};
+	}
 	if (is_snake_here(head))
 		game_over();
 	print_food();
 	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
-	//cout << '\n' << snakePos[0].x << '\t' << snakePos[0].y << '\t';
 	Sleep(moveDelay);
 }

@@ -8,10 +8,12 @@
 #include "screen.h"
 #include "const.h"
 
-static size_t xResolution;
-static size_t yResolution;
-int* fieldBase;
-
+namespace
+{
+	size_t xResolution;
+	size_t yResolution;
+	int* fieldBase;
+}
 
 void init_screen(int xRes, int yRes)
 {
@@ -30,7 +32,6 @@ void clear_field()
 
 int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 {
-	//#TODO check position in limits and correct position x+1, y+1 reminding border
 	int x, y;
 	bool posOK;
 	for (int i = 0; i < seqSize; i++)

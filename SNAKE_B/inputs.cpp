@@ -37,12 +37,6 @@ int read_input()
 	if (!_kbhit()) return action;
 	ch = _getch();
 	ch = toupper(ch);
-
-#if _DEBUG
-	_putch(ch);
-	_putch('\r');    // Carriage return
-	_putch('\n');    // Line feed
-#endif
 	for (int i = 0; i < mapSize; i++)
 	{
 		if (ch == keyMap[i].key)
