@@ -6,7 +6,6 @@
 #include "snake.h"
 #include "main.h"
 
-
 void exit_game()
 {
 	std::cout << "\n\t\tPRESS ANY KEY\n";

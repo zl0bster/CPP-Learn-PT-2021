@@ -5,7 +5,7 @@
 
 struct KeyMapItem
 {
-	unsigned int key;
+	char key;
 	char action;
 };
 static KeyMapItem keyMap[]
