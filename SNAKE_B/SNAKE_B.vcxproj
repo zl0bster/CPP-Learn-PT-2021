@@ -150,7 +150,6 @@
     <ClInclude Include="main.h" />
     <ClInclude Include="screen.h" />
     <ClInclude Include="snake.h" />
-    <ClInclude Include="winconsole.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="GraphicsLib.lib" />
@@ -163,7 +162,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="screen.cpp" />
     <ClCompile Include="snake.cpp" />
-    <ClCompile Include="winconsole.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

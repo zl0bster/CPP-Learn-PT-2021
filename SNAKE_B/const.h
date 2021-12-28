@@ -5,7 +5,6 @@
 #include <iostream>
 
 #include "GraphicsLib.h"
-//#include "game.h"
 
 struct Coord {
 	int x;

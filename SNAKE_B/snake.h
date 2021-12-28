@@ -1,7 +1,6 @@
 #pragma once
 #include "game.h"
 #include "const.h"
-#include "windows.h"
 
 enum Directions
 {

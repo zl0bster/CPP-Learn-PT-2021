@@ -1,8 +1,4 @@
 #pragma once
-#if defined _INPUTS_SET
-#define _INPUTS_SET
-
-#endif // 
 #define ESC_KEY 27
 
 enum Actions
