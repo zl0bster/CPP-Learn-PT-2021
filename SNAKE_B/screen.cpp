@@ -68,3 +68,9 @@ void draw_screen()
 {
 	DrawBalls(fieldBase, yResolution, xResolution);
 }
+
+void screen_destructor()
+{
+	delete[] fieldBase;
+	fieldBase = nullptr;
+}

@@ -16,3 +16,5 @@ Directions change_snake_dir(Directions newDir);
 bool is_snake_here(Coord& pos);
 void do_life_step(Directions snakeDir);
 void do_life_step1();
+
+void snake_destructor();

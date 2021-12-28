@@ -19,3 +19,5 @@ void draw_screen();
 int get_xResolution();
 int get_yResolution();
 void get_limits(Coord& lims);
+
+void screen_destructor();

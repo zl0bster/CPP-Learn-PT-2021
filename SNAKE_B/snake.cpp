@@ -164,3 +164,9 @@ void do_life_step1()	//keyboard direction control
 	draw_screen();
 	Sleep(moveDelay);
 }
+
+void snake_destructor()
+{
+	delete[] snakeFigure;
+	snakeFigure = nullptr;
+}
