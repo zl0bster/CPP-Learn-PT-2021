@@ -11,7 +11,6 @@ struct Coord {
 	int y;
 };
 
- const int moveDelay = 150;
  const Colors emptyField = EMPTY;
  const Colors headField = BLUE;
  const Colors bodyField = GREEN;

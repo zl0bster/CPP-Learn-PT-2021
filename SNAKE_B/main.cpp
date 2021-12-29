@@ -14,6 +14,7 @@ namespace
 {
 	Directions newDir = MOVE_RT;
 	int gameMode = DEMO_MODE;
+	const int moveDelay = 150;
 }
 
 static size_t prepare_game(int argQty, char* args[])
@@ -55,6 +56,7 @@ static void play_demo_rnd()
 	std::cout << "\n\n\t\tPress any key to exit demo\n";
 	for (short x = 200; x > 0; x--)
 	{
+		Sleep(moveDelay/2);
 		if (read_input()!=NOPS) return;
 		Directions moveDir = static_cast <Directions> (rand() % NOP);
 		unsigned short moveLen = static_cast <unsigned short> (rand() % get_yResolution());
@@ -72,7 +74,10 @@ static void play_game()
 {
 	while (true)
 	{
+
+		//Sleep(moveDelay);
 		react_inputs();
+		Sleep(moveDelay);
 		change_snake_dir(newDir);
 		do_life_step1();
 	}

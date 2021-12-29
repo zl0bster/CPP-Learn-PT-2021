@@ -4,19 +4,14 @@
 #include "food.h"
 #include "inputs.h"
 
-const size_t MAX_SIZE = 20;
-const size_t _DELAY = 100;
-
 namespace
 {
-	//Coord snakePos[MAX_SIZE];
 	Coord* snakePos;
 	int snakeSizeMax;
 	size_t snakeSize = 5;
 	Directions snakeDir = MOVE_RT;
 	PrintSequenceItem* snakeFigure;
 }
-
 
 void init_snake(int snakeLen)
 {
@@ -144,7 +139,6 @@ void do_life_step(Directions newDir = NOP)	//demo game mode
 	put_snake_to_field(&snakePos[0], snakeSize);
 	print_food();
 	draw_screen();
-	Sleep(moveDelay);
 }
 
 void do_life_step1()	//keyboard direction control
@@ -162,7 +156,6 @@ void do_life_step1()	//keyboard direction control
 	print_food();
 	put_snake_to_field(&snakePos[0], snakeSize);
 	draw_screen();
-	Sleep(moveDelay);
 }
 
 void snake_destructor()
