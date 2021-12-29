@@ -1,7 +1,10 @@
 #include <conio.h>
 #include <ctype.h>
 
+#include "winconsole.h"
+
 #include "inputs.h"
+#include "screen.h"
 
 struct KeyMapItem
 {
@@ -31,6 +34,7 @@ static KeyMapItem keyMap[]
 
 int read_input()
 {
+	print_menu();
 	int mapSize = sizeof(keyMap) / sizeof(keyMap[0]);
 	int ch;
 	ch = _getch();
@@ -51,4 +55,19 @@ int read_input()
 		}
 	}
 	return action;
+}
+
+bool if_exit()
+{
+	if (!_kbhit()) return false;
+	int ch;
+	ch = _getch();
+	ch = toupper(ch);
+	switch (ch) {
+	case ESC_KEY:
+		return true;
+	case '0':
+		return true;
+	}
+	return false;
 }

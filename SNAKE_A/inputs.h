@@ -19,4 +19,4 @@ enum Actions
 };
 
 int read_input();
-
+bool if_exit();

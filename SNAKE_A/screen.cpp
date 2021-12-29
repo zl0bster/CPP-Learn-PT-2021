@@ -11,19 +11,6 @@
 
 static char screenArray[yResolution + 2][xResolution + 3];
 
-int init_screen()
-{
-	/*
-	static const PrintSequenceItem border[] =
-	{
-		{0,0,'*'},
-		{0,yResolution+1, '+'},
-		{xResolution+1, 0, '+'},
-		{xResolution+1, yResolution, '*'}
-	};*/
-	return 0;
-}
-
 void copy_line(char* dest, size_t length, const char* source)
 {
 	for (int i = 0; i < length; i++)
@@ -53,7 +40,6 @@ void clear_screen()
 
 int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 {
-	//#TODO check position in limits and correct position x+1, y+1 reminding border
 	int x, y;
 	bool posOK;
 	for (int i = 0; i < seqSize; i++)
@@ -85,22 +71,26 @@ void get_limits(Coord& lims)
 	lims.x = xResolution;
 	lims.y = yResolution;
 }
-//
-//void put_border()
-//{
-//	//#TODO put border char sequence to screen array
-//}
-//
-//void put_char_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
-//{
-//	//#TODO no check position and no correction 
-//}
 
 void draw_screen()
 {
-	//#TODO clear screen and print screenarray
-	//system("CLS");
 	setCursorPosition(0, 0);
 	for (int i = 0; i < (yResolution + 2); i++)
 		std::cout << screenArray[i] << '\n';
+}
+
+
+void print_menu()
+{
+	system("CLS");
+	setCursorPosition(3, 3);
+	std::cout << "Snake game demo";
+	setCursorPosition(6, 5);
+	std::cout << "1 - snake movement";
+	setCursorPosition(6, 7);
+	std::cout << "2 - snake rnd movement";
+	setCursorPosition(6, 9);
+	std::cout << "3 - snake rnd movement with food";
+	setCursorPosition(6, 13);
+	std::cout << "0 or ESC - exit";
 }

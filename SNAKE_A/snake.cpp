@@ -13,7 +13,6 @@ namespace
 	Directions snakeDir = MOVE_RT;
 }
 
-
 void init_snake()
 {
 	int refX = get_xResolution() / 2;

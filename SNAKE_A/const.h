@@ -4,8 +4,6 @@
 #include <string.h>
 #include <iostream>
 
-//#include "game.h"
-
 struct Coord {
 	int x;
 	int y;
@@ -13,7 +11,7 @@ struct Coord {
 
  const char xResolution = 24;
  const char yResolution = 8;
- const char emptyFill = ' \'';
+ const char emptyFill = ' ';
  const char borderFill = '#';
  const char headSymbol = 'H';
  const char taleSymbol = 'o';
