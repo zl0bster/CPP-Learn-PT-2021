@@ -5,43 +5,39 @@
 #include "food.h"
 #include "snake.h"
 
-using std::rand;
-
-namespace
+bool is_food_here(FoodData* fd, Coord& pos)
 {
-	Coord foodPos;
+	return (are_coords_equal(fd->foodPos, pos));
 }
 
-bool is_food_here(Coord& pos)
+FoodData* init_food(FieldData* fp)
 {
-	return (are_coords_equal(foodPos, pos));
+	FoodData* fd = new FoodData;
+	fd->fp = fp;
+	return fd;
 }
 
-void init_food()
+void set_food_pos(FoodData* fd, SnakeData* sd)
 {
 	do
 	{
 		Coord limits;
-		get_limits(limits);
-		get_rand_pos(limits, foodPos);
-	}
-	while (is_snake_here(foodPos));
+		get_limits(fd->fp, limits);
+		get_rand_pos(limits, fd->foodPos);
+	} while (is_snake_here(sd, fd->foodPos));
 }
 
-void set_food_pos(Coord& pos)
-{
-	foodPos.x = pos.x;
-	foodPos.y = pos.y;
-}
-
-void print_food()
+void print_food(FoodData* fd)
 {
 	PrintSequenceItem item;
-	item.xPos = foodPos.x;
-	item.yPos = foodPos.y;
+	item.xPos = fd->foodPos.x;
+	item.yPos = fd->foodPos.y;
 	item.symbol = foodField;
-	put_sequence(&item);
+	put_sequence(fd->fp, &item);
 }
 
-
+void food_destructor(FoodData* fd)
+{
+	delete fd;
+}
 

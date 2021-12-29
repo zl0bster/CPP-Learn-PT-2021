@@ -8,29 +8,24 @@
 #include "screen.h"
 #include "const.h"
 
-namespace
+FieldData* init_screen(int xRes, int yRes)
 {
-	size_t xResolution;
-	size_t yResolution;
-	int* fieldBase;
-}
-
-void init_screen(int xRes, int yRes)
-{
-	xResolution = xRes;
-	yResolution = yRes;
-	fieldBase = new int[xRes * yRes];
+	FieldData* fldPtr = new FieldData;
+	fldPtr->xRes = xRes;
+	fldPtr->yRes = yRes;
+	fldPtr->fieldBase = new int[xRes * yRes];
 	StartDemo();
 	SetDimensions(yRes, xRes);
+	return fldPtr;
 }
 
-void clear_field()
+void clear_field(FieldData*fp)
 {
-	size_t fieldLen = xResolution * yResolution;
-	for (size_t i = 0; i < fieldLen; i++) fieldBase[i] = emptyField;
+	size_t fieldLen = fp->xRes* fp->yRes;
+	for (size_t i = 0; i < fieldLen; i++) fp->fieldBase[i] = emptyField;
 }
 
-int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
+int put_sequence(FieldData* fp, const PrintSequenceItem* charSeq, size_t seqSize)
 {
 	int x, y;
 	bool posOK;
@@ -38,9 +33,9 @@ int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 	{
 		x = charSeq->xPos;
 		y = charSeq->yPos;		
-		posOK = ((x >= 0) && (y >= 0) && (x < xResolution) && (y < yResolution));
+		posOK = ((x >= 0) && (y >= 0) && (x < fp->xRes) && (y < fp->yRes));
 		if (posOK)
-			fieldBase[y*xResolution + x] = charSeq->symbol;
+			fp->fieldBase[y* fp->xRes + x] = charSeq->symbol;
 		else
 			return -1;
 		charSeq++;
@@ -48,29 +43,29 @@ int put_sequence(const PrintSequenceItem* charSeq, size_t seqSize)
 	return 0;
 }
 
-int get_xResolution()
+int get_xResolution(FieldData* fp)
 {
-	return xResolution;
+	return fp->xRes;
 }
 
-int get_yResolution()
+int get_yResolution(FieldData* fp)
 {
-	return yResolution;
+	return fp->yRes;
 }
 
-void get_limits(Coord& lims)
+void get_limits(FieldData* fp, Coord& lims)
 {
-	lims.x = xResolution;
-	lims.y = yResolution;
+	lims.x = fp->xRes;
+	lims.y = fp->yRes;
 }
 
-void draw_screen()
+void draw_screen(FieldData* fp)
 {
-	DrawBalls(fieldBase, yResolution, xResolution);
+	DrawBalls(fp->fieldBase, fp->yRes, fp->xRes);
 }
 
-void screen_destructor()
+void screen_destructor(FieldData* fp)
 {
-	delete[] fieldBase;
-	fieldBase = nullptr;
+	delete[] fp->fieldBase;
+	fp->fieldBase = nullptr;
 }

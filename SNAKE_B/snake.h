@@ -1,6 +1,7 @@
 #pragma once
 #include "game.h"
 #include "const.h"
+#include "food.h"
 
 enum Directions
 {
@@ -11,10 +12,21 @@ enum Directions
 	NOP
 };
 
-void init_snake(int snakeLen);
-Directions change_snake_dir(Directions newDir);
-bool is_snake_here(Coord& pos);
-void do_life_step(Directions snakeDir);
-void do_life_step1();
+struct SnakeData
+{
+	Coord* snakePos;
+	int snakeSizeMax;
+	size_t snakeSize = 5;
+	Directions snakeDir = MOVE_RT;
+	PrintSequenceItem* snakeFigure;
+	FieldData* fp;
+	FoodData* fd;
+};
 
-void snake_destructor();
+SnakeData* init_snake(FieldData* fp, FoodData* fd, int snakeLen);
+Directions change_snake_dir(SnakeData* sd, Directions newDir);
+bool is_snake_here(SnakeData* sd, Coord& pos);
+void do_life_step(SnakeData* sd, Directions snakeDir);
+void do_life_step1(SnakeData* sd);
+
+void snake_destructor(SnakeData* sd);

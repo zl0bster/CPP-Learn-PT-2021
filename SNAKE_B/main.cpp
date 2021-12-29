@@ -9,21 +9,25 @@
 #include "main.h"
 
 enum Game_Modes{DEMO_MODE=1, MANUAL_MODE};
+Directions newDir; //command bufer
 
-namespace
+struct MainData
 {
-	Directions newDir = MOVE_RT;
 	int gameMode = DEMO_MODE;
 	const int moveDelay = 150;
-}
+	FieldData* fp;
+	FoodData* fd;
+	SnakeData* sd;
+};
 
-static size_t prepare_game(int argQty, char* args[])
+static MainData* prepare_game(int argQty, char* args[])
 {
 	//define default parameters
 	size_t snakeLen = 3;
 	size_t xRes = 20;
 	size_t yRes = 8;
-
+	size_t gameMode = 0;
+	MainData* md = new MainData;
 	//check and set command line params
 	// Input args:
 	// 1. horizontal field size
@@ -46,22 +50,25 @@ static size_t prepare_game(int argQty, char* args[])
 		if (int n = atoi(args[4]))
 			if (n == 2) 
 				gameMode = MANUAL_MODE;
-
-	init_screen(xRes, yRes);
-	return snakeLen;
+	md->gameMode = gameMode;
+	md->fp = init_screen(xRes, yRes);
+	md->fd = init_food(md->fp);
+	md->sd = init_snake(md->fp, md->fd, snakeLen);
+	set_food_pos(md->fd, md->sd);
+	return md;
 }
 
-static void play_demo_rnd()
+static void play_demo_rnd(MainData*md)
 {
 	std::cout << "\n\n\t\tPress any key to exit demo\n";
 	for (short x = 200; x > 0; x--)
 	{
-		Sleep(moveDelay/2);
+		Sleep(md->moveDelay/2);
 		if (read_input()!=NOPS) return;
 		Directions moveDir = static_cast <Directions> (rand() % NOP);
-		unsigned short moveLen = static_cast <unsigned short> (rand() % get_yResolution());
+		unsigned short moveLen = static_cast <unsigned short> (rand() % get_yResolution(md->fp));
 		for (int i = moveLen; i > 0; i--)
-			do_life_step(moveDir);
+			do_life_step(md->sd, moveDir);
 	}
 }
 
@@ -70,24 +77,32 @@ void set_new_dir(Directions dir)
 	newDir = dir;
 }
 
-static void play_game()
+static void play_game(MainData* md)
 {
 	while (true)
 	{
-
-		//Sleep(moveDelay);
 		react_inputs();
-		Sleep(moveDelay);
-		change_snake_dir(newDir);
-		do_life_step1();
+		Sleep(md->moveDelay);
+		change_snake_dir(md->sd, newDir);
+		do_life_step1(md->sd);
 	}
+}
+
+
+void exit_game(MainData* md)
+{
+	std::cout << "\n\t\tPRESS ANY KEY\n";
+	_getch();
+	FinishDemo();
+	screen_destructor(md->fp);
+	snake_destructor(md->sd);
+	food_destructor(md->fd);
+	std::exit(EXIT_SUCCESS);
 }
 
 int main(int argQty, char* args[])
 {
-	size_t snakeLen = prepare_game(argQty, args);
-	init_snake(snakeLen);
-	init_food();
-	(gameMode == MANUAL_MODE) ? play_game() : play_demo_rnd();
-	exit_game();
+	MainData* md = prepare_game(argQty, args);
+	(md->gameMode == MANUAL_MODE) ? play_game(md) : play_demo_rnd(md);
+	exit_game(md);
 }

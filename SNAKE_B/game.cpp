@@ -6,16 +6,6 @@
 #include "snake.h"
 #include "main.h"
 
-void exit_game()
-{
-	std::cout << "\n\t\tPRESS ANY KEY\n";
-	_getch();
-	FinishDemo();
-	screen_destructor();
-	snake_destructor();
-	std::exit(EXIT_SUCCESS);
-}
-
 void game_over()
 {
 	std::cout << "\n\n\t\tGAME OVER\n";
