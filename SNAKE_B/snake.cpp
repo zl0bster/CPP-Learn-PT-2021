@@ -14,6 +14,7 @@ SnakeData* init_snake(FieldData* fp, FoodData* fd, int snakeLen)
 	sd->snakeFigure = new PrintSequenceItem[sd->snakeSizeMax];
 	sd->snakeSize = snakeLen;
 	sd->fd = fd;
+	sd->fp = fp;
 	for (int i = 0; i < sd->snakeSize; i++)
 	{
 		sd->snakePos[i].x = refX - i;
@@ -117,7 +118,7 @@ bool is_snake_here(SnakeData* sd, Coord& pos)
 	return false;
 }
 
-void do_life_step(SnakeData* sd, Directions newDir = NOP)	//demo game mode
+bool do_life_step(SnakeData* sd, Directions newDir = NOP)	//demo game mode
 {
 	clear_field(sd->fp);
 	change_snake_dir(sd, newDir);
@@ -129,13 +130,14 @@ void do_life_step(SnakeData* sd, Directions newDir = NOP)	//demo game mode
 		set_food_pos(sd->fd, sd);
 	};
 	if (is_snake_here(sd, head))
-		game_over();
+		return false;
 	put_snake_to_field(sd, sd->snakePos, sd->snakeSize);
 	print_food(sd->fd);
 	draw_screen(sd->fp);
+	return true;
 }
 
-void do_life_step1(SnakeData* sd)	//keyboard direction control
+bool do_life_step1(SnakeData* sd)	//keyboard direction control
 {
 	clear_field(sd->fp);
 	move_snake(sd, sd->snakePos, sd->snakeSize, sd->snakeDir);
@@ -146,10 +148,11 @@ void do_life_step1(SnakeData* sd)	//keyboard direction control
 		set_food_pos(sd->fd, sd);
 	}
 	if (is_snake_here(sd, head))
-		game_over();
+		return false;
 	print_food(sd->fd);
 	put_snake_to_field(sd, sd->snakePos, sd->snakeSize);
 	draw_screen(sd->fp);
+	return true;
 }
 
 void snake_destructor(SnakeData* sd)

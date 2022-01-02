@@ -9,7 +9,7 @@
 void game_over()
 {
 	std::cout << "\n\n\t\tGAME OVER\n";
-	exit_game();
+	//exit_game();
 }
 
 static void do_up()
@@ -34,7 +34,7 @@ static void do_lt()
 
 static void do_xt()
 {
-	exit_game();
+	set_exit_flag();
 }
 
 using actFx = void (*)();

@@ -8,17 +8,8 @@
 #include "inputs.h"
 #include "main.h"
 
-enum Game_Modes{DEMO_MODE=1, MANUAL_MODE};
 Directions newDir; //command bufer
-
-struct MainData
-{
-	int gameMode = DEMO_MODE;
-	const int moveDelay = 150;
-	FieldData* fp;
-	FoodData* fd;
-	SnakeData* sd;
-};
+bool exit_flag;
 
 static MainData* prepare_game(int argQty, char* args[])
 {
@@ -54,7 +45,8 @@ static MainData* prepare_game(int argQty, char* args[])
 	md->fp = init_screen(xRes, yRes);
 	md->fd = init_food(md->fp);
 	md->sd = init_snake(md->fp, md->fd, snakeLen);
-	set_food_pos(md->fd, md->sd);
+	set_food_pos((md->fd), (md->sd));
+	exit_flag = false;
 	return md;
 }
 
@@ -68,13 +60,21 @@ static void play_demo_rnd(MainData*md)
 		Directions moveDir = static_cast <Directions> (rand() % NOP);
 		unsigned short moveLen = static_cast <unsigned short> (rand() % get_yResolution(md->fp));
 		for (int i = moveLen; i > 0; i--)
-			do_life_step(md->sd, moveDir);
+			if (!do_life_step(md->sd, moveDir))
+			{
+				game_over();
+				break;
+			}
 	}
 }
 
 void set_new_dir(Directions dir)
 {
 	newDir = dir;
+}
+void set_exit_flag()
+{
+	exit_flag = true;
 }
 
 static void play_game(MainData* md)
@@ -84,7 +84,12 @@ static void play_game(MainData* md)
 		react_inputs();
 		Sleep(md->moveDelay);
 		change_snake_dir(md->sd, newDir);
-		do_life_step1(md->sd);
+		if (!do_life_step1(md->sd))
+		{
+			game_over();
+			break;
+		};
+		if (exit_flag) return;
 	}
 }
 

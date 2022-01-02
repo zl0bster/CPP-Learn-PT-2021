@@ -17,7 +17,7 @@ FoodData* init_food(FieldData* fp)
 	return fd;
 }
 
-void set_food_pos(FoodData* fd, SnakeData* sd)
+void set_food_pos(struct FoodData* fd, struct SnakeData* sd)
 {
 	do
 	{

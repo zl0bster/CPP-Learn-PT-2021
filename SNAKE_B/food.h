@@ -12,7 +12,8 @@ struct FoodData
 
 bool is_food_here(FoodData* fd, Coord& pos);
 FoodData* init_food(FieldData* fp);
-void set_food_pos(FoodData* fd, SnakeData* sd);
+//void set_food_pos(FoodData* fd, SnakeData* sd);
+void set_food_pos(struct FoodData* fd, struct SnakeData* sd);
 void print_food(FoodData* fd);
 
 void food_destructor(FoodData* fd);

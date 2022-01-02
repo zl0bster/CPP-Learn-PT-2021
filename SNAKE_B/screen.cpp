@@ -21,7 +21,7 @@ FieldData* init_screen(int xRes, int yRes)
 
 void clear_field(FieldData*fp)
 {
-	size_t fieldLen = fp->xRes* fp->yRes;
+	size_t fieldLen = (fp->xRes)* (fp->yRes);
 	for (size_t i = 0; i < fieldLen; i++) fp->fieldBase[i] = emptyField;
 }
 

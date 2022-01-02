@@ -2,6 +2,8 @@
 #include "game.h"
 #include "const.h"
 #include "food.h"
+#include "screen.h"
+
 
 enum Directions
 {
@@ -14,19 +16,19 @@ enum Directions
 
 struct SnakeData
 {
-	Coord* snakePos;
+	struct Coord* snakePos;
 	int snakeSizeMax;
-	size_t snakeSize = 5;
-	Directions snakeDir = MOVE_RT;
-	PrintSequenceItem* snakeFigure;
-	FieldData* fp;
-	FoodData* fd;
+	size_t snakeSize;
+	Directions snakeDir;
+	struct PrintSequenceItem* snakeFigure;
+	struct FieldData* fp;
+	struct FoodData* fd;
 };
 
 SnakeData* init_snake(FieldData* fp, FoodData* fd, int snakeLen);
 Directions change_snake_dir(SnakeData* sd, Directions newDir);
 bool is_snake_here(SnakeData* sd, Coord& pos);
-void do_life_step(SnakeData* sd, Directions snakeDir);
-void do_life_step1(SnakeData* sd);
+bool do_life_step(SnakeData* sd, Directions snakeDir);
+bool do_life_step1(SnakeData* sd);
 
 void snake_destructor(SnakeData* sd);
